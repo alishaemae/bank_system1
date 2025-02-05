@@ -1,0 +1,20 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "C:\\Users\\olina\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "python.formatting.provider": "autopep8",
+    "explorer.confirmDelete": false,
+    "http.proxyAuthorization": null,
+    "http.proxy": "http://1okmgA:tv2FvB@38.148.134.19:8000",
+    "terminal.integrated.copyOnSelection": true,
+    "files.autoSave": "onWindowChange",
+    // Автоформатирование при сохранении файла
+    "editor.formatOnSave": true,
+    // Выбор стандартного форматтера (например, black для Python)
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    // Включение автоформатирования при вставке
+    "editor.formatOnPaste": true,
+    // Автообновление терминала при переключении окон
+    "terminal.integrated.scrollback": 10000
+}

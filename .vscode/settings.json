@@ -1,0 +1,17 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "C:\\Users\\olina\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "explorer.confirmDelete": false,
+    "http.proxyAuthorization": null,
+    "http.proxy": "http://1okmgA:tv2FvB@38.148.134.19:8000",
+    "terminal.integrated.copyOnSelection": true,
+    // "sqltools.connections": [
+    //     {
+    //         "driver": "SQLite",
+    //         "name": "MySQLiteConnection",
+    //         "group": "1",
+    //         "database": "${workspaceFolder:bank_system}/database/bank_system"
+    //     }
+    // ],
+    // "sqltools.useNodeRuntime": true
+}
