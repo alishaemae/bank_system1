@@ -83,7 +83,10 @@ class AuthController(QtWidgets.QDialog):
         width, height = 150, 50
         image = Image.new("RGB", (width, height), (255, 255, 255))
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype("arial.ttf", 36)
+        
+        # Provide the full path to the font file
+        font_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'static', 'DMSans_36pt-Regular.ttf')
+        font = ImageFont.truetype(font_path, 36)
 
         self.current_captcha_text = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
         # текст с искажениями

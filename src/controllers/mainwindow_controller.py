@@ -33,7 +33,7 @@ class MainWindowController(QMainWindow):
         # лк
         self.ui.pushButton_26.clicked.connect(self.request_personal_cabinet)
 
-        self.ui.tabwidget.setCurrentIndex(0)
+        self.ui.stackedwitged.setCurrentIndex(0)
 
     def apply_dark_theme(self):
         dark_theme = """
