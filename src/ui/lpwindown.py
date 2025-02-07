@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -46,7 +46,7 @@ class Ui_Dialog(object):
         self.refreshCaptchaButton = QtWidgets.QPushButton(Dialog)
         self.refreshCaptchaButton.setGeometry(QtCore.QRect(250, 160, 40, 40))  
         self.refreshCaptchaButton.setStyleSheet("border: none;")
-        refresh_icon = QtGui.QIcon("src/assets/refresh.svg")
+        refresh_icon = QtGui.QIcon(os.path.join(os.path.dirname(__file__), '..', 'assets', 'refresh.svg'))
         self.refreshCaptchaButton.setIcon(refresh_icon)
         self.refreshCaptchaButton.setIconSize(QtCore.QSize(32, 32))
         self.refreshCaptchaButton.setObjectName("refreshCaptchaButton")

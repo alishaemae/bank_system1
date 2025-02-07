@@ -33,7 +33,7 @@ class AuthController(QtWidgets.QDialog):
         self.ui.buttonBox.rejected.connect(self.reject)
 
     def apply_custom_font(self):
-        font_path = "src/assets/DMSans-Italic-VariableFont_opsz,wght.ttf"
+        font_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'DMSans-Italic-VariableFont_opsz,wght.ttf')
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -86,7 +86,8 @@ class AuthController(QtWidgets.QDialog):
         
         # Provide the full path to the font file
         font_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'static', 'DMSans_36pt-Regular.ttf')
-        font = ImageFont.truetype(font_path, 36)
+        font_size = 36
+        font = ImageFont.truetype(font_path, font_size)
 
         self.current_captcha_text = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
         # текст с искажениями
