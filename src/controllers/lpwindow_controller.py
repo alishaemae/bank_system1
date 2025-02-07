@@ -22,7 +22,6 @@ class AuthController(QtWidgets.QDialog):
 
         self.setFixedSize(self.size())  # фиксированный размер окна
 
-        self.apply_custom_font()
         self.apply_dark_theme() 
 
         self.ui.ErrorLabel.hide()
@@ -32,16 +31,6 @@ class AuthController(QtWidgets.QDialog):
         self.ui.buttonBox.accepted.connect(self.validate_credentials)
         self.ui.buttonBox.rejected.connect(self.reject)
 
-    def apply_custom_font(self):
-        font_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'DMSans-Italic-VariableFont_opsz,wght.ttf')
-        font_id = QFontDatabase.addApplicationFont(font_path)
-        if font_id != -1:
-            font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
-            app_font = QFont(font_family)
-            app_font.setPointSize(9)
-            QtWidgets.QApplication.setFont(app_font)
-        else:
-            print("Ошибка: Шрифт не найден или не загружен")
 
     def apply_dark_theme(self):
         dark_theme = """
@@ -80,37 +69,41 @@ class AuthController(QtWidgets.QDialog):
         self.setStyleSheet(dark_theme)
 
     def generate_captcha(self):
-        width, height = 150, 50
+        # Коэффициент масштабирования (например, 2 раза)
+        scale = 1
+        base_width, base_height = 150, 50
+        width, height = base_width * scale, base_height * scale
         image = Image.new("RGB", (width, height), (255, 255, 255))
         draw = ImageDraw.Draw(image)
         
-        # Provide the full path to the font file
-        font_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'static', 'DMSans_36pt-Regular.ttf')
-        font_size = 36
-        font = ImageFont.truetype(font_path, font_size)
-
+        # Используем встроенный шрифт
+        font = ImageFont.load_default(size=25)
+        
         self.current_captcha_text = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
-        # текст с искажениями
+        
+        # Рисуем текст. Координаты умножаем на scale.
         for i, char in enumerate(self.current_captcha_text):
-            x = 10 + i * 20 + random.randint(-3, 3)
-            y = random.randint(5, 15)
+            x = (10 + i * 20 + random.randint(-3, 3)) * scale
+            y = (random.randint(5, 15)) * scale
             draw.text((x, y), char, font=font, fill=self.random_color())
-
-        # шум
+        
+        # Добавляем шум
         for _ in range(100):
             x, y = random.randint(0, width), random.randint(0, height)
             draw.point((x, y), fill=self.random_color())
-
-        # фильтр размытия
+        
+        # Применяем размытие
         image = image.filter(ImageFilter.GaussianBlur(1))
-
-        # капча во временном буфере сохраняеца
+        
+        # Масштабируем изображение обратно до оригинальных размеров
+        image = image.resize((base_width, base_height), resample=Image.Resampling.LANCZOS)
+        
+        # Сохраняем и загружаем капчу в виджет
         from io import BytesIO
         buffer = BytesIO()
         image.save(buffer, format="PNG")
         buffer.seek(0)
-
-        # загрузка изображения капчи в виджет
+        
         q_image = QtGui.QImage()
         q_image.loadFromData(buffer.read(), "PNG")
         self.ui.captchaLabel.setPixmap(QtGui.QPixmap.fromImage(q_image))
@@ -124,22 +117,21 @@ class AuthController(QtWidgets.QDialog):
         password = self.ui.passwordLineEdit.text().strip()
         captcha_input = self.ui.captchaLineEdit.text().strip()
 
-        if not username or not password or not captcha_input:
-            self.show_error("Все поля обязательны для заполнения")
-            return
+        # if not username or not password or not captcha_input:
+        #     self.show_error("Все поля обязательны для заполнения")
+        #     return
 
-        if captcha_input != self.current_captcha_text:
-            self.show_error("Неверная капча")
-            self.ui.captchaLineEdit.clear()
-            self.generate_captcha()
-            return
+        # if captcha_input != self.current_captcha_text:
+        #     self.show_error("Неверная капча")
+        #     self.ui.captchaLineEdit.clear()
+        #     self.generate_captcha()
+        #     return
 
         db = next(get_db())
         employee = db.query(Employee).filter(Employee.username == username).first()
 
         if employee and password == employee.password_hash:  # пароль пока сравнивается в открытом виде
             self.ui.ErrorLabel.hide()
-            QtWidgets.QMessageBox.information(self, "Успешно", f"Добро пожаловать, {employee.role_id}!")
             self.successful_login.emit(str(employee.role_id))
             self.accept()
         else:

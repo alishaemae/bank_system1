@@ -17,7 +17,6 @@ class Ui_Dialog(object):
         # Поле для логина
         self.usernameLineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         font = QtGui.QFont()
-        font.setFamily("Sitka Small")
         font.setPointSize(9)
         self.usernameLineEdit.setFont(font)
         self.usernameLineEdit.setObjectName("usernameLineEdit")
@@ -26,7 +25,6 @@ class Ui_Dialog(object):
         # Поле для пароля
         self.passwordLineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         font = QtGui.QFont()
-        font.setFamily("Sitka Small")
         font.setPointSize(9)
         self.passwordLineEdit.setFont(font)
         self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -37,7 +35,6 @@ class Ui_Dialog(object):
         self.captchaLabel = QtWidgets.QLabel(Dialog)
         self.captchaLabel.setGeometry(QtCore.QRect(60, 160, 180, 40))  
         font = QtGui.QFont()
-        font.setFamily("Sitka Small")
         font.setPointSize(10)
         self.captchaLabel.setFont(font)
         self.captchaLabel.setObjectName("captchaLabel")
@@ -61,7 +58,6 @@ class Ui_Dialog(object):
         self.ErrorLabel.setGeometry(QtCore.QRect(30, 20, 351, 31)) 
         self.ErrorLabel.setAlignment(QtCore.Qt.AlignCenter) 
         font = QtGui.QFont()
-        font.setFamily("Sitka Small")
         font.setPointSize(9)
         self.ErrorLabel.setFont(font)
         self.ErrorLabel.setStyleSheet("color: red;")

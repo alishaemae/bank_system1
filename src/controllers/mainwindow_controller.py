@@ -21,20 +21,6 @@ class MainWindowController(QMainWindow):
         print(f"Главное окно открыто с ролью: {self.role}")  
 
 
-        self.ui.pushButton.setText("Клиенты")  
-        self.ui.pushButton.clicked.connect(self.show_clients_page)  # клиенты
-        self.ui.pushButton_2.clicked.connect(self.show_accounts_page)  # счет
-        self.ui.pushButton_6.clicked.connect(self.show_transactions_page)  # транзакции
-        self.ui.pushButton_4.clicked.connect(self.show_loans_page)  # кредиты
-        self.ui.pushButton_5.clicked.connect(self.show_cards_page)  # карты
-        self.ui.pushButton_3.clicked.connect(self.show_employees_page)  # сотрудники
-        self.ui.pushButton_7.clicked.connect(self.show_activity_log_page)  # журнал активности
-
-        # лк
-        self.ui.pushButton_26.clicked.connect(self.request_personal_cabinet)
-
-        self.ui.stackedwitged.setCurrentIndex(0)
-
     def apply_dark_theme(self):
         dark_theme = """
         QMainWindow {
@@ -95,31 +81,3 @@ class MainWindowController(QMainWindow):
         }
         """
         self.setStyleSheet(dark_theme)
-
-    def show_clients_page(self):
-        self.ui.stackedwitged.setCurrentIndex(1)  
-
-    def show_accounts_page(self):
-        self.ui.stackedwitged.setCurrentIndex(2)  # страница для счетов
-
-    def show_transactions_page(self):
-        self.ui.stackedwitged.setCurrentIndex(3)  # страница для транзакций
-
-    def show_loans_page(self):
-        self.ui.stackedwitged.setCurrentIndex(4)  # страница для кредитов
-
-    def show_cards_page(self):
-        self.ui.stackedwitged.setCurrentIndex(5)  # страница для карт
-
-    def show_employees_page(self):
-        self.ui.stackedwitged.setCurrentIndex(6)  # страница для сотрудников
-
-    def show_activity_log_page(self):
-        self.ui.stackedwitged.setCurrentIndex(7)  # страница для журнала активности
-
-    def request_personal_cabinet(self):
-        if not self.role:
-            QMessageBox.warning(self, "Ошибка", "Роль пользователя не установлена")
-            return
-        print(f"Запрос на открытие личного кабинета с ролью: {self.role}")
-        self.personal_cabinet_requested.emit(self.role)
