@@ -20,6 +20,7 @@ class Ui_Dialog(object):
         font.setPointSize(9)
         self.usernameLineEdit.setFont(font)
         self.usernameLineEdit.setObjectName("usernameLineEdit")
+        self.usernameLineEdit.setFixedHeight(28)
         self.verticalLayout.addWidget(self.usernameLineEdit)
 
         # Поле для пароля
@@ -29,6 +30,7 @@ class Ui_Dialog(object):
         self.passwordLineEdit.setFont(font)
         self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLineEdit.setObjectName("passwordLineEdit")
+        self.passwordLineEdit.setFixedHeight(28)
         self.verticalLayout.addWidget(self.passwordLineEdit)
 
         # Метка капчи
@@ -51,6 +53,9 @@ class Ui_Dialog(object):
         # Поле для капчи
         self.captchaLineEdit = QtWidgets.QLineEdit(Dialog)
         self.captchaLineEdit.setGeometry(QtCore.QRect(60, 210, 281, 28))  
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.captchaLineEdit.setFont(font)
         self.captchaLineEdit.setObjectName("captchaLineEdit")
 
         # Метка ошибки
@@ -64,10 +69,9 @@ class Ui_Dialog(object):
         self.ErrorLabel.setObjectName("ErrorLabel")
 
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(190, 260, 191, 31))  
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).setText("ОК")  
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).setText("Отмена")  
+        self.buttonBox.setGeometry(QtCore.QRect(177, 260, 50, 31))
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).setText("Войти")
         self.buttonBox.setObjectName("buttonBox")
 
 
@@ -76,7 +80,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Авторизация"))
+        Dialog.setWindowTitle(_translate("Dialog", "Введите логин и пароль"))
         self.usernameLineEdit.setPlaceholderText(_translate("Dialog", "Введите логин"))
         self.passwordLineEdit.setPlaceholderText(_translate("Dialog", "Введите пароль"))
         self.captchaLineEdit.setPlaceholderText(_translate("Dialog", "Введите капчу"))

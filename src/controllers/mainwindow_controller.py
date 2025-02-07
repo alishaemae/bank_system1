@@ -8,4 +8,3 @@ class MainWindowController(UIMainWindow):  # Наследуемся от UIMainW
         self.setupUi()
         self.setWindowTitle("Банковская Система")
         self.setFixedSize(801, 478)
-

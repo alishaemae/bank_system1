@@ -18,22 +18,22 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
 
         self.add_client_btn = QtWidgets.QPushButton("Добавить клиента", self.horizontalLayoutWidget)
-        self.add_client_btn.setFixedSize(130, 23)
+        self.add_client_btn.setFixedSize(130, 25)
         self.horizontalLayout.addWidget(self.add_client_btn)
 
         self.transactions_btn = QtWidgets.QPushButton("Управление транзакциями", self.horizontalLayoutWidget)
-        self.transactions_btn.setFixedSize(170, 23)
+        self.transactions_btn.setFixedSize(170, 25)
         self.horizontalLayout.addWidget(self.transactions_btn)
 
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
 
         self.cabinet_btn = QtWidgets.QPushButton("Личный кабинет", self.horizontalLayoutWidget)
-        self.cabinet_btn.setFixedSize(110, 23)
+        self.cabinet_btn.setFixedSize(110, 25)
         self.horizontalLayout.addWidget(self.cabinet_btn)
 
         self.exit_btn = QtWidgets.QPushButton("Выйти", self.horizontalLayoutWidget)
-        self.exit_btn.setFixedSize(60, 23)
+        self.exit_btn.setFixedSize(60, 25)
         self.horizontalLayout.addWidget(self.exit_btn)
 
         # Таблица клиентов
@@ -61,7 +61,7 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.horizontalLayout_2.addWidget(self.lineEdit)
 
         self.search_btn = QtWidgets.QPushButton("Поиск", self.horizontalLayoutWidget_2)
-        self.search_btn.setFixedSize(60, 23)
+        self.search_btn.setFixedSize(60, 25)
         self.horizontalLayout_2.addWidget(self.search_btn)
 
         # Статусная строка

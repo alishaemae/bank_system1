@@ -20,7 +20,7 @@ class AuthController(QtWidgets.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        # self.setFixedSize(self.size())  # фиксированный размер окна
+        self.setFixedSize(self.size())  # фиксированный размер окна
 
         self.ui.ErrorLabel.hide()
         self.generate_captcha()
@@ -88,10 +88,13 @@ class AuthController(QtWidgets.QDialog):
         #     self.ui.captchaLineEdit.clear()
         #     self.generate_captcha()
         #     return
-
-        db = next(get_db())
-        employee = db.query(Employee).filter(Employee.username == username).first()
-
+        try:
+            db = next(get_db())
+            employee = db.query(Employee).filter(Employee.username == username).first()
+        except Exception as e:
+            self.show_error("Ошибка подключения к базе данных", exception=e)
+            return
+        
         if employee and password == employee.password_hash:  # пароль пока сравнивается в открытом виде
             self.ui.ErrorLabel.hide()
             self.successful_login.emit(str(employee.role_id))
@@ -99,6 +102,6 @@ class AuthController(QtWidgets.QDialog):
         else:
             self.show_error("Неверный логин или пароль")
 
-    def show_error(self, message):
+    def show_error(self, message, exception=None):
         self.ui.ErrorLabel.setText(message)
         self.ui.ErrorLabel.show()
