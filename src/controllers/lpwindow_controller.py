@@ -20,7 +20,7 @@ class AuthController(QtWidgets.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.setFixedSize(self.size())  # фиксированный размер окна
+        # self.setFixedSize(self.size())  # фиксированный размер окна
 
         self.apply_dark_theme() 
 

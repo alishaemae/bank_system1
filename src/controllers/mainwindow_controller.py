@@ -1,33 +1,22 @@
-from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QComboBox, QTableWidget, QTableWidgetItem, QMessageBox
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5 import uic
-from src.controllers.lkemployees_controller import LKEmployeesController 
-from src.controllers.lpwindow_controller import AuthController
-from src.ui.mainwindow import Ui_MainWindow  
+from PyQt5.QtWidgets import QMainWindow
+from src.ui.mainwindow import UIMainWindow
 
-class MainWindowController(QMainWindow):
-    personal_cabinet_requested = pyqtSignal(str)
-
-    def __init__(self, role, parent=None):
+class MainWindowController(UIMainWindow):  # Наследуемся от UIMainWindow
+    def __init__(self, parent=None):
         super().__init__(parent)
-        self.ui = Ui_MainWindow()  
-        self.ui.setupUi(self)  
-
+        # Вызов setupUi() создаёт интерфейс в self
+        self.setupUi()
         self.setWindowTitle("Банковская Система")
-
+        self.setFixedSize(801, 478)
         self.apply_dark_theme()
-
-        self.role = role
-        print(f"Главное окно открыто с ролью: {self.role}")  
-
 
     def apply_dark_theme(self):
         dark_theme = """
         QMainWindow {
-            background-color: #1c1c1c; /* Темный фон для основного окна */
+            background-color: #1c1c1c;
         }
         QDialog {
-            background-color: #1c1c1c; /* Темный фон для диалогов */
+            background-color: #1c1c1c;
             color: #ffffff;
         }
         QLabel {
@@ -58,26 +47,26 @@ class MainWindowController(QMainWindow):
             color: #ffffff;
         }
         QTabWidget {
-            background-color: #2a2a2a; /* Темный фон для QTabWidget */
-            color: #ffffff; /* Белый цвет текста */
+            background-color: #2a2a2a;
+            color: #ffffff;
         }
         QTabWidget::pane {
-            border: none; /* Убираем границу у панели */
+            border: none;
         }
         QTabBar {
-            background-color: #3a3a3a; /* Темный фон для вкладок */
-            color: #ffffff; /* Белый текст на вкладках */
+            background-color: #3a3a3a;
+            color: #ffffff;
         }
         QTabBar::tab {
-            background-color: #3a3a3a; /* Фон вкладок */
-            color: #ffffff; /* Текст на вкладке */
+            background-color: #3a3a3a;
+            color: #ffffff;
             padding: 10px;
         }
         QTabBar::tab:selected {
-            background-color: #4a4a4a; /* Выделенная вкладка */
+            background-color: #4a4a4a;
         }
         QTabBar::tab:hover {
-            background-color: #4a4a4a; /* Вкладка при наведении */
+            background-color: #4a4a4a;
         }
         """
         self.setStyleSheet(dark_theme)

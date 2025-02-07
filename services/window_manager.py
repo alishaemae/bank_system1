@@ -7,16 +7,15 @@ from PyQt5.QtCore import Qt
 main_window_instance = None  # глоб переменная для экземпляра главного окна
 lk_window_instance = None  # глоб переменная для экземпляра личного кабинета
 
-def show_main_window(role):
+def show_main_window():
     global main_window_instance
-    print(f"Открытие главного окна с ролью: {role}") 
-
-    main_window_instance = MainWindowController(role)
+    if main_window_instance is not None:
+        main_window_instance.close()
+    main_window_instance = MainWindowController()
     main_window_instance.show()
-    main_window_instance.personal_cabinet_requested.connect(lambda: open_personal_cabinet(role))
 
 
-def open_personal_cabinet(role):
+def open_personal_cabinet():
     global lk_window_instance
     print(f"Открытие личного кабинета с ролью: {role}")
 
