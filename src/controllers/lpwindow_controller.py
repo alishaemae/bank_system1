@@ -22,8 +22,6 @@ class AuthController(QtWidgets.QDialog):
 
         # self.setFixedSize(self.size())  # фиксированный размер окна
 
-        self.apply_dark_theme() 
-
         self.ui.ErrorLabel.hide()
         self.generate_captcha()
 
@@ -31,42 +29,6 @@ class AuthController(QtWidgets.QDialog):
         self.ui.buttonBox.accepted.connect(self.validate_credentials)
         self.ui.buttonBox.rejected.connect(self.reject)
 
-
-    def apply_dark_theme(self):
-        dark_theme = """
-        QDialog {
-            background-color: #1c1c1c; 
-            color: #ffffff;
-        }
-        QLabel {
-            color: #ffffff;
-        }
-        QLineEdit {
-            background-color: #2a2a2a;
-            color: #ffffff;
-            border: 1px solid #3d3d3d;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        QPushButton {
-            background-color: #3a3a3a;
-            color: #ffffff;
-            border: 1px solid #4a4a4a;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        QPushButton:hover {
-            background-color: #4a4a4a;
-        }
-        QPushButton:pressed {
-            background-color: #5a5a5a;
-        }
-        QDialogButtonBox QPushButton {
-            background-color: #3a3a3a;
-            color: #ffffff;
-        }
-        """
-        self.setStyleSheet(dark_theme)
 
     def generate_captcha(self):
         # Коэффициент масштабирования (например, 2 раза)
