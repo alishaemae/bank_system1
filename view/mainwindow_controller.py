@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow
-from src.ui.mainwindow import UIMainWindow
+from view.mainwindow import UIMainWindow
 
 class MainWindowController(UIMainWindow):  # Наследуемся от UIMainWindow
     def __init__(self, parent=None):

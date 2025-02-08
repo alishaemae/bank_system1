@@ -1,10 +1,10 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import pyqtSignal
-from src.ui.lpwindown import Ui_Dialog
+from view.lpwindown import Ui_Dialog
 from sqlalchemy.orm import Session
-from services.db_connector import get_db
-from models.employees import Employee
+from service.db_connector import get_db
+from data.employees import Employee
 import random
 import string
 from PIL import Image, ImageDraw, ImageFont, ImageFilter

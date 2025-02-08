@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDialog
-from src.controllers.mainwindow_controller import MainWindowController
-from src.controllers.lkemployees_controller import LKEmployeesController
-from src.ui.lkemployees import Ui_Form 
+from view.mainwindow_controller import MainWindowController
+from view.lkemployees_controller import LKEmployeesController
+from view.user_info_window import Ui_Form 
 from PyQt5.QtCore import Qt
 
 main_window_instance = None  # глоб переменная для экземпляра главного окна
