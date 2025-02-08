@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDialog
 from view.mainwindow_controller import MainWindowController
 from view.lkemployees_controller import LKEmployeesController
-from view.user_info_window import Ui_Form 
+from view.user_info_window import UserInfoWindow 
 from PyQt5.QtCore import Qt
 
 main_window_instance = None  # глоб переменная для экземпляра главного окна
@@ -32,7 +32,7 @@ def open_personal_cabinet():
         lk_window_instance.close() 
 
     lk_window_instance = QDialog()
-    ui = Ui_Form()
+    ui = UserInfoWindow()
     ui.setupUi(lk_window_instance)
 
     # передаем реальный объект окна в контроллер и роль
