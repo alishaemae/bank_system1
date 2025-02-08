@@ -68,19 +68,24 @@ class Ui_Dialog(object):
         self.ErrorLabel.setStyleSheet("color: red;")
         self.ErrorLabel.setObjectName("ErrorLabel")
 
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(177, 260, 50, 31))
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).setText("Войти")
-        self.buttonBox.setObjectName("buttonBox")
+        self.enter_widget = QtWidgets.QWidget(Dialog)
+        self.enter_widget.setGeometry(QtCore.QRect(172, 255, 60, 25))
+        self.enter_widget.setObjectName("enter_widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.enter_widget)
+
+
+        self.enter_button = QtWidgets.QPushButton("Войти", self.enter_widget)
+        self.enter_button.setFixedSize(60, 25)
+        self.enter_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 15px; color: white; border: 0; border-radius: 4px;")
+        self.enter_button.raise_()
 
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-
+    
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Введите логин и пароль"))
+        Dialog.setWindowTitle(_translate("Dialog", "Авторизация"))
         self.usernameLineEdit.setPlaceholderText(_translate("Dialog", "Введите логин"))
         self.passwordLineEdit.setPlaceholderText(_translate("Dialog", "Введите пароль"))
         self.captchaLineEdit.setPlaceholderText(_translate("Dialog", "Введите капчу"))

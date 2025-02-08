@@ -19,7 +19,7 @@ class UIMainWindow(QtWidgets.QMainWindow):
 
         self.back_button = QtWidgets.QPushButton("Личный кабинет", self.centralwidget)
         self.back_button.setFixedSize(130, 25)
-        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(650, 20)
         self.back_button.raise_()
@@ -27,12 +27,12 @@ class UIMainWindow(QtWidgets.QMainWindow):
         # Кнопка "Создать отчет"
         self.back_button = QtWidgets.QPushButton("Создать отчет", self)
         self.back_button.setFixedSize(110, 25)
-        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         self.back_button.setGeometry(QtCore.QRect(20, 433, 60, 25))
 
         self.back_button = QtWidgets.QPushButton("Выйти", self.centralwidget)
         self.back_button.setFixedSize(60, 25)
-        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(720, 433)
         self.back_button.raise_()
@@ -46,6 +46,7 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.tableWidget.setColumnWidth(1, 150)
         self.tableWidget.setColumnWidth(2, 170)
         self.tableWidget.setColumnWidth(3, 199)
+        self.tableWidget.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
 
         # Панель поиска
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
@@ -62,7 +63,8 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.horizontalLayout_2.addWidget(self.lineEdit)
 
         self.search_btn = QtWidgets.QPushButton("Поиск", self.horizontalLayoutWidget_2)
-        self.search_btn.setFixedSize(60, 25)
+        self.search_btn.setFixedSize(45, 20)
+        self.search_btn.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 15x; color: white; border: 0; border-radius: 4px;")
         self.horizontalLayout_2.addWidget(self.search_btn)
 
         # Статусная строка

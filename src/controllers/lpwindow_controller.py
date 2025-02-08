@@ -26,8 +26,7 @@ class AuthController(QtWidgets.QDialog):
         self.generate_captcha()
 
         self.ui.refreshCaptchaButton.clicked.connect(self.generate_captcha)
-        self.ui.buttonBox.accepted.connect(self.validate_credentials)
-        self.ui.buttonBox.rejected.connect(self.reject)
+        self.ui.enter_button.clicked.connect(self.validate_credentials)
 
 
     def generate_captcha(self):

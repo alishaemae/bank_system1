@@ -114,7 +114,7 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         # Добавляем кнопку напрямую к центральному виджету:
         self.back_button = QtWidgets.QPushButton("Назад", self.centralwidget)
         self.back_button.setFixedSize(60, 25)
-        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(720, 433)
         self.back_button.raise_()

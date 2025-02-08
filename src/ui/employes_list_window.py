@@ -28,6 +28,8 @@ class StaffListWindow(QWidget):
         self.staffs_table.setColumnWidth(1, 150)
         self.staffs_table.setColumnWidth(2, 165)
         self.staffs_table.setColumnWidth(3, 199)
+        self.staffs_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
+
  
         self.staffs_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.staffs_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
@@ -53,13 +55,13 @@ class StaffListWindow(QWidget):
         # Кнопка "Добавить сотрудника"
         self.add_staff_button = QPushButton("Добавить сотрудника", self)
         self.add_staff_button.setFixedSize(160, 25)
-        self.add_staff_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.add_staff_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         self.add_staff_button.setGeometry(QtCore.QRect(620, 20, 160, 25))
             
         # Кнопка "Назад"
         self.back_button = QPushButton("Назад", self)
         self.back_button.setFixedSize(60, 25)
-        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         self.back_button.setGeometry(QtCore.QRect(720, 433, 60, 25))
 
 
