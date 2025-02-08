@@ -49,6 +49,12 @@ class StaffListWindow(QWidget):
             item_phone = QTableWidgetItem(f"{staff.phone_number}")
             item_phone.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             self.staffs_table.setItem(i, 3, item_phone)
+
+        # Кнопка "Добавить сотрудника"
+        self.add_staff_button = QPushButton("Добавить сотрудника", self)
+        self.add_staff_button.setFixedSize(160, 25)
+        self.add_staff_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.add_staff_button.setGeometry(QtCore.QRect(620, 20, 160, 25))
             
         # Кнопка "Назад"
         self.back_button = QPushButton("Назад", self)
@@ -56,11 +62,6 @@ class StaffListWindow(QWidget):
         self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
         self.back_button.setGeometry(QtCore.QRect(720, 433, 60, 25))
 
-        # Кнопка "Добавить сотрудника"
-        self.add_staff_button = QPushButton("Добавить сотрудника", self)
-        self.add_staff_button.setFixedSize(160, 25)
-        self.add_staff_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
-        self.add_staff_button.setGeometry(QtCore.QRect(620, 20, 160, 25))
 
 class DummyStaff:
     def __init__(self, last_name, first_name, middle_name, job, role_name, phone_number):

@@ -17,28 +17,29 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
 
-        self.add_client_btn = QtWidgets.QPushButton("Добавить клиента", self.horizontalLayoutWidget)
-        self.add_client_btn.setFixedSize(130, 25)
-        self.horizontalLayout.addWidget(self.add_client_btn)
+        self.back_button = QtWidgets.QPushButton("Личный кабинет", self.centralwidget)
+        self.back_button.setFixedSize(130, 25)
+        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
+        self.back_button.move(650, 20)
+        self.back_button.raise_()
 
-        self.transactions_btn = QtWidgets.QPushButton("Управление транзакциями", self.horizontalLayoutWidget)
-        self.transactions_btn.setFixedSize(170, 25)
-        self.horizontalLayout.addWidget(self.transactions_btn)
+        # Кнопка "Создать отчет"
+        self.back_button = QtWidgets.QPushButton("Создать отчет", self)
+        self.back_button.setFixedSize(110, 25)
+        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setGeometry(QtCore.QRect(20, 433, 60, 25))
 
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-
-        self.cabinet_btn = QtWidgets.QPushButton("Личный кабинет", self.horizontalLayoutWidget)
-        self.cabinet_btn.setFixedSize(110, 25)
-        self.horizontalLayout.addWidget(self.cabinet_btn)
-
-        self.exit_btn = QtWidgets.QPushButton("Выйти", self.horizontalLayoutWidget)
-        self.exit_btn.setFixedSize(60, 25)
-        self.horizontalLayout.addWidget(self.exit_btn)
+        self.back_button = QtWidgets.QPushButton("Выйти", self.centralwidget)
+        self.back_button.setFixedSize(60, 25)
+        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
+        self.back_button.move(720, 433)
+        self.back_button.raise_()
 
         # Таблица клиентов
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 130, 761, 310))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 70, 761, 343))
         self.tableWidget.setColumnCount(4)
         self.tableWidget.setHorizontalHeaderLabels(["ФИО", "Дата рождения", "Телефон", "Е-mail"])
         self.tableWidget.setColumnWidth(0, 240)
@@ -48,7 +49,7 @@ class UIMainWindow(QtWidgets.QMainWindow):
 
         # Панель поиска
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(425, 95, 357, 39))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(20, 35, 357, 39))
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
 
