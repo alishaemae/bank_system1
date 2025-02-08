@@ -35,7 +35,7 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         details_layout.setColumnStretch(4, 2)
         
         # Задаем стиль для подписей и значений с рамками (если нужно изменить, измените стиль)
-        label_style = "font-size: 14px; color: #000000; border: 1px whight; padding: 2px;"
+        label_style = "font-size: 14px; border: 1px whight; padding: 2px;"
         value_style = "font-size: 14px; color: rgb(30, 138, 86); font-weight: bold; border: 1px whight; padding: 2px;"
         
         # Строка: Дата рождения (левый блок)
