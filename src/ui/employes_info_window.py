@@ -118,6 +118,14 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(720, 433)
         self.back_button.raise_()
+        
+        # Добавляем кнопку напрямую к центральному виджету:
+        self.back_button = QtWidgets.QPushButton("Скрыть сотрудника", self.centralwidget)
+        self.back_button.setFixedSize(150, 25)
+        self.back_button.setStyleSheet("background-color: #7b99ca; font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
+        self.back_button.move(629, 20)
+        self.back_button.raise_()
 
 
 if __name__ == "__main__":
