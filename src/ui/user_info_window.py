@@ -6,7 +6,7 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         super().__init__(parent)
     
     def setupUi(self):
-        self.setWindowTitle("Информация о сотруднике")
+        self.setWindowTitle("Личный кабинет")
         self.setFixedSize(801, 478)
         
         self.centralwidget = QtWidgets.QWidget(self)
