@@ -69,9 +69,9 @@ class UIMainWindow(QtWidgets.QMainWindow):
         self.setStatusBar(self.statusbar)
 
 
-# if __name__ == "main":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     window = MainWindow()
-#     window.show()
-#     sys.exit(app.exec_())
+if __name__ == "main":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    window = UIMainWindow()
+    window.show()
+    sys.exit(app.exec_())
