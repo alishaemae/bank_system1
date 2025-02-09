@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtGui
+from PyQt6 import QtWidgets, QtGui
 from service.db_connector import get_db
 from data.employees import Employee
 import random
@@ -45,9 +45,9 @@ def random_color(self):
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
 def validate_credentials(self):
-    username = self.ui.usernameLineEdit.text().strip()
-    password = self.ui.passwordLineEdit.text().strip()
-    captcha_input = self.ui.captchaLineEdit.text().strip()
+    username = self.usernameLineEdit.text().strip()
+    password = self.passwordLineEdit.text().strip()
+    captcha_input = self.captchaLineEdit.text().strip()
 
     # if not username or not password or not captcha_input:
     #     self.show_error("Все поля обязательны для заполнения")
@@ -62,7 +62,7 @@ def validate_credentials(self):
         db = next(get_db())
         employee = db.query(Employee).filter(Employee.username == username).first()
     except Exception as e:
-        self.show_error("Ошибка подключения к базе данных", exception=e)
+        show_error("Ошибка подключения к базе данных", exception=e)
         return
     
     if employee and password == employee.password_hash:  # пароль пока сравнивается в открытом виде

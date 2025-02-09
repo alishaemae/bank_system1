@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 from view.auth_w_controller import *
 import os
 
@@ -31,7 +31,7 @@ class AuthWindow(QtWidgets.QWidget):
         font = QtGui.QFont()
         font.setPointSize(9)
         self.passwordLineEdit.setFont(font)
-        self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.passwordLineEdit.setFixedHeight(28)
         self.passwordLineEdit.setPlaceholderText("Введите пароль")
         self.verticalLayout.addWidget(self.passwordLineEdit)
@@ -64,7 +64,7 @@ class AuthWindow(QtWidgets.QWidget):
         # Метка ошибки
         self.ErrorLabel = QtWidgets.QLabel(self)
         self.ErrorLabel.setGeometry(QtCore.QRect(30, 20, 351, 31)) 
-        self.ErrorLabel.setAlignment(QtCore.Qt.AlignCenter) 
+        self.ErrorLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter) 
         font = QtGui.QFont()
         font.setPointSize(12)
         self.ErrorLabel.setFont(font)
@@ -78,4 +78,4 @@ class AuthWindow(QtWidgets.QWidget):
         self.enter_button = QtWidgets.QPushButton("Войти", self.enter_widget)
         self.enter_button.setFixedSize(60, 25)
         self.enter_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 15px; color: white; border: 0; border-radius: 4px;")
-        self.enter_button.raise_()
+        self.enter_button.clicked.connect(lambda: validate_credentials(self))
