@@ -48,9 +48,10 @@ class AuthWindow(QtWidgets.QWidget):
         self.refreshCaptchaButton = QtWidgets.QPushButton(self)
         self.refreshCaptchaButton.setGeometry(QtCore.QRect(250, 160, 40, 40))  
         self.refreshCaptchaButton.setStyleSheet("border: none;")
-        refresh_icon = QtGui.QIcon(os.path.join(os.path.dirname(__file__), '..', 'assets', 'refresh.svg'))
+        refresh_icon = QtGui.QIcon(os.path.join(os.path.dirname(__file__), 'assets', 'refresh.svg'))
         self.refreshCaptchaButton.setIcon(refresh_icon)
         self.refreshCaptchaButton.setIconSize(QtCore.QSize(32, 32))
+        self.refreshCaptchaButton.clicked.connect(lambda: generate_captcha(self))
 
         # Поле для капчи
         self.captchaLineEdit = QtWidgets.QLineEdit(self)
