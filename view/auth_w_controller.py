@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import pyqtSignal
-from view.lpwindown import Ui_Dialog
+from view.auth_windown import AuthWindow
 from sqlalchemy.orm import Session
 from service.db_connector import get_db
 from data.employees import Employee
@@ -17,10 +17,8 @@ class AuthController(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
         super(AuthController, self).__init__(parent)
-        self.ui = Ui_Dialog()
-        self.ui.setupUi(self)
-
-        self.setFixedSize(self.size())  # фиксированный размер окна
+        self.ui = AuthWindow()
+        self.ui.ui_auth_window()
 
         self.ui.ErrorLabel.hide()
         self.generate_captcha()
