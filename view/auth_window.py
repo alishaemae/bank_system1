@@ -36,6 +36,14 @@ class AuthWindow(QtWidgets.QWidget):
         self.passwordLineEdit.setPlaceholderText("Введите пароль")
         self.verticalLayout.addWidget(self.passwordLineEdit)
 
+        # Поле для капчи
+        self.captchaLineEdit = QtWidgets.QLineEdit(self)
+        self.captchaLineEdit.setGeometry(QtCore.QRect(60, 210, 281, 28))  
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.captchaLineEdit.setFont(font)
+        self.captchaLineEdit.setPlaceholderText("Введите капчу")
+
         # Метка капчи
         self.captchaLabel = QtWidgets.QLabel(self)
         self.captchaLabel.setGeometry(QtCore.QRect(60, 160, 180, 40))  
@@ -53,14 +61,6 @@ class AuthWindow(QtWidgets.QWidget):
         self.refreshCaptchaButton.setIconSize(QtCore.QSize(32, 32))
         self.refreshCaptchaButton.clicked.connect(lambda: generate_captcha(self))
 
-        # Поле для капчи
-        self.captchaLineEdit = QtWidgets.QLineEdit(self)
-        self.captchaLineEdit.setGeometry(QtCore.QRect(60, 210, 281, 28))  
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.captchaLineEdit.setFont(font)
-        self.captchaLineEdit.setPlaceholderText("Введите капчу")
-
         # Метка ошибки
         self.ErrorLabel = QtWidgets.QLabel(self)
         self.ErrorLabel.setGeometry(QtCore.QRect(30, 20, 351, 31)) 
@@ -70,7 +70,6 @@ class AuthWindow(QtWidgets.QWidget):
         self.ErrorLabel.setFont(font)
         self.ErrorLabel.setStyleSheet("color: red;")
         self.ErrorLabel.setObjectName("ErrorLabel")
-        self.ErrorLabel.setText("Ошибка!")
 
         self.enter_widget = QtWidgets.QWidget(self)
         self.enter_widget.setGeometry(QtCore.QRect(172, 255, 60, 25))

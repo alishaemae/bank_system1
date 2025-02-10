@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
     QApplication, QPushButton, QWidget, QTableWidget, QTableWidgetItem
 )
 
-class StaffListWindow(QWidget):
+class EmployeesListWindow(QWidget):
     def __init__(self):
         super().__init__()
         # Тестовые данные
@@ -77,6 +77,6 @@ class DummyStaff:
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    window = StaffListWindow()
+    window = EmployeesListWindow()
     window.show()
     sys.exit(app.exec_())

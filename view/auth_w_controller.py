@@ -1,10 +1,10 @@
-from PyQt6 import QtWidgets, QtGui
-from service.db_connector import get_db
-from data.employees import Employee
+from PyQt6.QtWidgets import QMessageBox
+from PyQt6 import QtGui
 import random
 import string
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-import os
+from service.user_manager import *
+from view.clients_list_window import ClientsListWindow
 
 
 def generate_captcha(self):
@@ -37,41 +37,31 @@ def generate_captcha(self):
     
     q_image = QtGui.QImage()
     q_image.loadFromData(buffer.read(), "PNG")
-    # Вместо self.ui.captchaLabel используем self.captchaLabel
     self.captchaLabel.setPixmap(QtGui.QPixmap.fromImage(q_image))
+    self.captchaLineEdit.clear()
 
 def random_color(self):
     # возвращает случайни цвет
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
+def open_clients_list_window(self):
+    self.clients_list_window = ClientsListWindow()
+    self.clients_list_window.show()
+    self.hide()
+
 def validate_credentials(self):
-    username = self.usernameLineEdit.text().strip()
+    user_manager = UserManager()
+    login = self.usernameLineEdit.text().strip()
     password = self.passwordLineEdit.text().strip()
-    captcha_input = self.captchaLineEdit.text().strip()
+    captcha = self.captchaLineEdit.text().strip()
+    result = user_manager.get_user(login, password)
 
-    # if not username or not password or not captcha_input:
-    #     self.show_error("Все поля обязательны для заполнения")
-    #     return
-
-    # if captcha_input != self.current_captcha_text:
-    #     self.show_error("Неверная капча")
-    #     self.ui.captchaLineEdit.clear()
-    #     self.generate_captcha()
-    #     return
-    try:
-        db = next(get_db())
-        employee = db.query(Employee).filter(Employee.username == username).first()
-    except Exception as e:
-        show_error("Ошибка подключения к базе данных", exception=e)
-        return
-    
-    if employee and password == employee.password_hash:  # пароль пока сравнивается в открытом виде
-        self.ui.ErrorLabel.hide()
-        self.successful_login.emit(str(employee.role_id))
-        self.accept()
+    if result == "":
+        if captcha == self.current_captcha_text:
+            open_clients_list_window(self)
+        else:
+            self.ErrorLabel.setText("Неверная капча")
+            generate_captcha(self)
     else:
-        self.show_error("Неверный логин или пароль")
-
-def show_error(self, message, exception=None):
-    self.ui.ErrorLabel.setText(message)
-    self.ui.ErrorLabel.show()
+        self.ErrorLabel.setText(result)
+        generate_captcha(self)

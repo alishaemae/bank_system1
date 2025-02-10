@@ -1,0 +1,2 @@
+[database]
+database_url = mysql+pymysql://alishaemae:root3_56@109.196.102.132:3306/bank_system
