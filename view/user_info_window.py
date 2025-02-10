@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class UserInfoWindow(QtWidgets.QMainWindow):
@@ -21,7 +21,7 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         font = QtGui.QFont()
         font.setPointSize(13)
         self.name_label.setFont(font)
-        self.name_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.name_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.name_label.setFixedHeight(45)
         # Обрамляем заголовок рамкой (оставляем стиль без изменений, если нужно убрать рамку – измените стиль)
         self.name_label.setStyleSheet("border: 1px whight;")
@@ -76,7 +76,9 @@ class UserInfoWindow(QtWidgets.QMainWindow):
         details_layout.addWidget(self.salary_value, 3, 1)
         
         # Добавляем spacer между колонками 1 и 3 в виде пустого пространства (колонка 2)
-        spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacer = QtWidgets.QSpacerItem(
+            20, 20, QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Minimum
+        )
         details_layout.addItem(spacer, 0, 2, 4, 4)
         
         # Правый блок
@@ -123,7 +125,7 @@ class UserInfoWindow(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     import sys
     import datetime
-    from PyQt5 import QtWidgets
+    from PyQt6 import QtWidgets
 
     app = QtWidgets.QApplication(sys.argv)
 
@@ -145,4 +147,4 @@ if __name__ == "__main__":
     window.setupUi()
     window.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

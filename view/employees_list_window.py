@@ -1,6 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (
+from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
     QApplication, QPushButton, QWidget, QTableWidget, QTableWidgetItem
 )
 
@@ -79,4 +79,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = EmployeesListWindow()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class ClientInfoWindow(QtWidgets.QWidget):
@@ -12,7 +12,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
 
         # Создаем пользовательский вертикальный скролл-бар
         self.custom_scroll = QtWidgets.QScrollBar(self)
-        self.custom_scroll.setOrientation(QtCore.Qt.Vertical)
+        self.custom_scroll.setOrientation(QtCore.Qt.Orientation.Vertical)
         # Располагаем скролл-бар слева – ширина 16 пикселей
         self.custom_scroll.setGeometry(0, 0, 16, 318)
 
@@ -24,7 +24,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
         font.setPointSize(12)
         self.list_widget.setFont(font)
         # Отключаем встроенный скролл-бар, чтобы не мешал
-        self.list_widget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.list_widget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         # Связываем пользовательский скролл-бар и скрытый скролл-бар list_widget
         internal_scroll = self.list_widget.verticalScrollBar()
@@ -40,7 +40,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
             item_font.setWeight(50)
             item.setFont(item_font)
             # Выравниваем текст по левому краю внутри list_widget
-            item.setTextAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+            item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
             self.list_widget.addItem(item)
 
         # Применяем стиль к данным клиента для индексов: 1,3,5,7,9,11,13,15,17,19
@@ -68,7 +68,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
         self.tab_widget.addTab(self.tab_4, "Кредиты")
 
         # Устанавливаем тексты элементов вручную (выравнены по левому краю внутри list_widget)
-        self.list_widget.item(0).setText("ФИО: ")
+        self.list_widget.item(0).setText("ФИО:")
         self.list_widget.item(2).setText("Дата рождения:")
         self.list_widget.item(4).setText("Номер телефона:")
         self.list_widget.item(6).setText("Адрес регистрации:")
@@ -86,4 +86,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     form = ClientInfoWindow()
     form.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
