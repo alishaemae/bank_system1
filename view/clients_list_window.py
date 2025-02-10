@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QComboBox, QLineEdit, QStatusBar, QHBoxLayout
 from PyQt6 import QtCore
-from service.user_manager import UserManager
+from service.user_manager import UserManager, UserRole
 from view.clients_list_w_controller import *
 
 class ClientsListWindow(QWidget):
@@ -19,25 +19,33 @@ class ClientsListWindow(QWidget):
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
 
-        self.back_button = QPushButton("Личный кабинет", self)
-        self.back_button.setFixedSize(130, 25)
-        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-        # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
-        self.back_button.move(650, 20)
-        self.back_button.clicked.connect(lambda: open_user_info_window(self))
+        # Кнопка "Личный кабинет"
+        self.user_info_button = QPushButton("Личный кабинет", self.horizontalLayoutWidget)
+        self.user_info_button.setFixedSize(130, 25)
+        self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+        self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
+        self.horizontalLayout.addWidget(self.user_info_button)
 
+        self.employees_button = QPushButton("Управление сотрудниками")
+        self.employees_button.setFixedSize(180, 25)
+        self.employees_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+
+        if self.user.role == UserRole.BOSS:
+            self.horizontalLayout.addWidget(self.employees_button)
+            self.employees_button.clicked.connect(lambda: open_employees_list_window(self))
+            
         # Кнопка "Создать отчет"
-        self.back_button = QPushButton("Создать отчет", self)
-        self.back_button.setFixedSize(110, 25)
-        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-        self.back_button.setGeometry(QtCore.QRect(20, 433, 60, 25))
+        self.report_button = QPushButton("Создать отчет", self)
+        self.report_button.setFixedSize(110, 25)
+        self.report_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+        self.report_button.setGeometry(QtCore.QRect(20, 433, 60, 25))
 
-        self.back_button = QPushButton("Выйти", self)
-        self.back_button.setFixedSize(60, 25)
-        self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-        # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
-        self.back_button.move(720, 433)
-        self.back_button.clicked.connect(lambda: open_auth_window(self))
+        # Кнопка "Выйти"
+        self.exit_button = QPushButton("Выйти", self)
+        self.exit_button.setFixedSize(60, 25)
+        self.exit_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+        self.exit_button.move(720, 433)
+        self.exit_button.clicked.connect(lambda: open_auth_window(self))
 
         # Таблица клиентов
         self.clients_table = QTableWidget(self)

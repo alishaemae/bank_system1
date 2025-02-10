@@ -3,6 +3,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication, QPushButton, QWidget, QTableWidget, QTableWidgetItem
 )
+from view.employees_list_w_controller import *
 
 class EmployeesListWindow(QWidget):
     def __init__(self):
@@ -53,16 +54,18 @@ class EmployeesListWindow(QWidget):
             self.employees_table.setItem(i, 3, item_phone)
 
         # Кнопка "Добавить сотрудника"
-        self.add_staff_button = QPushButton("Добавить сотрудника", self)
-        self.add_staff_button.setFixedSize(160, 25)
-        self.add_staff_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-        self.add_staff_button.setGeometry(QtCore.QRect(620, 20, 160, 25))
+        self.add_employee_button = QPushButton("Добавить сотрудника", self)
+        self.add_employee_button.setFixedSize(160, 25)
+        self.add_employee_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+        self.add_employee_button.setGeometry(QtCore.QRect(620, 20, 160, 25))
+        self.add_employee_button.clicked.connect(lambda: open_add_employee_window(self))
             
         # Кнопка "Назад"
         self.back_button = QPushButton("Назад", self)
         self.back_button.setFixedSize(60, 25)
         self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         self.back_button.setGeometry(QtCore.QRect(720, 433, 60, 25))
+        self.back_button.clicked.connect(lambda: open_clients_list_window(self))
 
 
 class DummyStaff:

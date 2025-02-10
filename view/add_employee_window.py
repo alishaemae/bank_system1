@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (
     QWidget, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy
 )
 from PyQt6.QtCore import Qt
+from view.add_employee_w_controller import *
 
 
 class AddEmployeeWindow(QWidget):
@@ -42,6 +43,7 @@ class AddEmployeeWindow(QWidget):
         self.back_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;"
         )
+        self.back_button.clicked.connect(lambda: open_employees_list_window(self))
 
         # Левый столбец (форма 1)
         form_layout = QVBoxLayout()

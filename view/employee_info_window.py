@@ -1,5 +1,6 @@
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QPushButton
+from view.employee_info_w_controller import *
 
 
 class EmployeeInfoWindow(QWidget):
@@ -108,7 +109,7 @@ class EmployeeInfoWindow(QWidget):
             "background-color: rgb(30, 138, 86); font-size: 14px; border: 0; border-radius: 4px;"
         )
         self.back_button.move(720, 433)
-        self.back_button.raise_()
+        self.back_button.clicked.connect(lambda: open_emloyees_list_window(self))
 
         self.delete_button = QPushButton("Скрыть сотрудника", self)
         self.delete_button.setFixedSize(150, 25)
@@ -116,7 +117,7 @@ class EmployeeInfoWindow(QWidget):
             "background-color: rgb(30, 138, 86); font-size: 14px; border: 0; border-radius: 4px;"
         )
         self.delete_button.move(629, 20)
-        self.delete_button.raise_()
+        self.delete_button.clicked.connect(lambda: delete_employee(self))
 
 
 if __name__ == "__main__":
