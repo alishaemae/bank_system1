@@ -44,7 +44,7 @@ class UserManager(metaclass=SingletonMeta):
             else:
                 return "Пользователь не найден"
         else:
-            return f"{query.error}"
+            return "Ошибка подключения к базе данных"
     
     # def get_staffs_info(self):
     #     data_service = DatabaseService()

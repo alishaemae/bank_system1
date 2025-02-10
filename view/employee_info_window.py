@@ -30,6 +30,9 @@ class EmployeeInfoWindow(QWidget):
         details_layout.setHorizontalSpacing(15)
         details_layout.setColumnStretch(1, 1)
         details_layout.setColumnStretch(4, 2)
+        # Увеличиваем минимальную ширину столбцов, чтобы правый столбец не сдвигался влево
+        details_layout.setColumnMinimumWidth(1, 150)
+        details_layout.setColumnMinimumWidth(4, 150)
 
         value_style = "font-size: 14px; color: rgb(30, 138, 86); font-weight: bold; border: 1px; padding: 2px;"
  

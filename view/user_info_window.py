@@ -33,6 +33,9 @@ class UserInfoWindow(QWidget):
         # Левый блок занимает колонки 0 и 1, затем spacer в колонке 2, правый блок занимает колонки 3 и 4
         details_layout.setColumnStretch(1, 1)
         details_layout.setColumnStretch(4, 2)
+        # Увеличиваем минимальную ширину столбцов, чтобы правый столбец не сдвигался влево
+        details_layout.setColumnMinimumWidth(1, 150)
+        details_layout.setColumnMinimumWidth(4, 150)
         
         font = QtGui.QFont()
         font.setPointSize(10)
