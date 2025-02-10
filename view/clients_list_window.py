@@ -24,7 +24,7 @@ class ClientsListWindow(QWidget):
         self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(650, 20)
-        self.back_button.raise_()
+        self.back_button.clicked.connect(lambda: open_user_info_window(self))
 
         # Кнопка "Создать отчет"
         self.back_button = QPushButton("Создать отчет", self)
@@ -40,15 +40,19 @@ class ClientsListWindow(QWidget):
         self.back_button.clicked.connect(lambda: open_auth_window(self))
 
         # Таблица клиентов
-        self.tableWidget = QTableWidget(self)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 70, 761, 343))
-        self.tableWidget.setColumnCount(4)
-        self.tableWidget.setHorizontalHeaderLabels(["ФИО", "Дата рождения", "Телефон", "Е-mail"])
-        self.tableWidget.setColumnWidth(0, 240)
-        self.tableWidget.setColumnWidth(1, 150)
-        self.tableWidget.setColumnWidth(2, 170)
-        self.tableWidget.setColumnWidth(3, 199)
-        self.tableWidget.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
+        self.clients_table = QTableWidget(self)
+        self.clients_table.setGeometry(QtCore.QRect(20, 70, 761, 343))
+        self.clients_table.setColumnCount(4)
+        self.clients_table.setHorizontalHeaderLabels(["ФИО", "Дата рождения", "Телефон", "Е-mail"])
+        self.clients_table.setColumnWidth(0, 240)
+        self.clients_table.setColumnWidth(1, 150)
+        self.clients_table.setColumnWidth(2, 170)
+        self.clients_table.setColumnWidth(3, 199)
+        self.clients_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
+        self.clients_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.clients_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+
+        self.clients_table.cellDoubleClicked.connect(lambda: open_client_info_window(self))
 
         # Панель поиска
         self.horizontalLayoutWidget_2 = QWidget(self)

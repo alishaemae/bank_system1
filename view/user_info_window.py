@@ -1,11 +1,13 @@
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QPushButton
 
+from service.user_manager import UserManager
+
 
 class UserInfoWindow(QWidget):
-    def __init__(self, user):    #test
+    def __init__(self):    #test
         super().__init__()
-        self.user = user    #test
+        self.user = UserManager().authorised_user
         self.ui_user_info_window()
     
     def ui_user_info_window(self):
@@ -120,27 +122,27 @@ class UserInfoWindow(QWidget):
         self.back_button.raise_()
 
 
-if __name__ == "__main__":
-    import sys
-    import datetime
-    from PyQt6.QtWidgets import QApplication
+# if __name__ == "__main__":
+#     import sys
+#     import datetime
+#     from PyQt6.QtWidgets import QApplication
 
-    app = QApplication(sys.argv)
+#     app = QApplication(sys.argv)
 
-    class DummyUser:
-        def __init__(self):
-            self.full_name = "Иван Иванов Иванович"
-            self.birth_date = datetime.datetime(1990, 12, 31)
-            self.login = "ivanov"
-            self.phone_number = "+7 (111) 222-3333"
-            self.address = "г. Москва, ул. Ленина, д. 1"
-            self.job = "Бухгалтер"
-            self.salary = 50000
-            self.email = "nasushchnov487@gmail.com"
+#     class DummyUser:
+#         def __init__(self):
+#             self.full_name = "Иван Иванов Иванович"
+#             self.birth_date = datetime.datetime(1990, 12, 31)
+#             self.login = "ivanov"
+#             self.phone_number = "+7 (111) 222-3333"
+#             self.address = "г. Москва, ул. Ленина, д. 1"
+#             self.job = "Бухгалтер"
+#             self.salary = 50000
+#             self.email = "nasushchnov487@gmail.com"
 
-    dummy_user = DummyUser()
+#     dummy_user = DummyUser()
 
-    form = UserInfoWindow(dummy_user)
-    form.show()
+#     form = UserInfoWindow(dummy_user)
+#     form.show()
 
-    sys.exit(app.exec())
+#     sys.exit(app.exec())
