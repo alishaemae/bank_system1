@@ -14,26 +14,34 @@ class AddEmployeeWindow(QWidget):
         self.setWindowTitle("Добавление сотрудника")
         self.setFixedSize(701, 378)
 
-        # Увеличиваем верхний отступ, чтобы все поля со списками с названиями оказались ниже
+        # Основной layout с отступами по краям
         main_layout = QVBoxLayout(self)
         main_layout.setContentsMargins(10, 10, 10, 10)
         main_layout.setSpacing(5)
 
-        # Верхняя панель кнопок (не изменяем)
+        # Верхняя панель с кнопкой "Добавить сотрудника"
         top_layout = QHBoxLayout()
         self.add_employee_button = QPushButton("Добавить сотрудника")
         self.add_employee_button.setFixedSize(180, 25)
         self.add_employee_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;"
         )
+        # Здесь оставляем только кнопку добавления, кнопку "Назад" убираем из верхней панели
+        top_layout.addWidget(self.add_employee_button)
+        top_layout.addStretch()
+
+        self.error_label = QLabel("")
+        self.error_label.setFixedHeight(22)
+        self.error_label.setStyleSheet("color: red; font-size: 14px;")
+        top_layout.addWidget(self.error_label)
+        self.error_label.setText("Заполните все поля")
+
+        # Инициализируем кнопку "Назад" (не трогаем расположение кнопок)
         self.back_button = QPushButton("Назад")
         self.back_button.setFixedSize(60, 25)
         self.back_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;"
         )
-        top_layout.addWidget(self.add_employee_button)
-        top_layout.addStretch()
-        top_layout.addWidget(self.back_button)
 
         # Левый столбец (форма 1)
         form_layout = QVBoxLayout()
@@ -115,21 +123,24 @@ class AddEmployeeWindow(QWidget):
         form_1_layout.addWidget(self.email_label)
         form_1_layout.addWidget(self.email_input)
 
-        # Расположение столбцов с равномерным распределением
+        # Расположение форм в два столбца
         parallel_layout = QHBoxLayout()
         parallel_layout.addLayout(form_layout, 1)
         parallel_layout.addLayout(form_1_layout, 1)
 
-        # Нижняя панель (выход) оставляем без изменений
-        exit_layout = QHBoxLayout()
-        exit_layout.addStretch()
-        exit_layout.addWidget(self.back_button)
-
+        # Добавляем верхнюю панель и формы
         main_layout.addLayout(top_layout)
-        # Добавляем отступ, чтобы всё, начиная с названий полей (например, "Логин", "Должность"),
-        # было смещено вниз
+        # Отступ между кнопками и формами – так, чтобы названия полей ушли ниже
         main_layout.addSpacing(10)
         main_layout.addLayout(parallel_layout)
+
+        # Вместо растяжителя добавляем фиксированный отступ, чтобы кнопку "Назад" разместить ниже
+        main_layout.addSpacing(9)
+
+        # Нижняя панель с кнопкой "Назад" в правом нижнем углу
+        exit_layout = QHBoxLayout()
+        exit_layout.addWidget(self.back_button)
+        exit_layout.setAlignment(self.back_button, Qt.AlignmentFlag.AlignRight)
         main_layout.addLayout(exit_layout)
 
         self.setLayout(main_layout)
