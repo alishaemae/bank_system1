@@ -56,14 +56,22 @@ def validate_credentials(self):
     captcha = self.captchaLineEdit.text().strip()
     result = user_manager.get_user(login, password)
 
-    if login == "" or password == "" or captcha == "":
+    # if login == "" or password == "" or captcha == "":
+    #     self.ErrorLabel.setText("Заполните все поля")
+    # elif result == "":
+    #     if captcha == self.current_captcha_text:
+    #         open_clients_list_window(self)
+    #     else:
+    #         self.ErrorLabel.setText("Неверная капча")
+    #         generate_captcha(self)
+    # else:
+    #     self.ErrorLabel.setText(result)
+    #     generate_captcha(self)
+
+    if login == "" or password == "":
         self.ErrorLabel.setText("Заполните все поля")
     elif result == "":
-        if captcha == self.current_captcha_text:
             open_clients_list_window(self)
-        else:
-            self.ErrorLabel.setText("Неверная капча")
-            generate_captcha(self)
     else:
         self.ErrorLabel.setText(result)
         generate_captcha(self)

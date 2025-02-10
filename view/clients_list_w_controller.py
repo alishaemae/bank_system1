@@ -1,5 +1,5 @@
 def open_auth_window(self):
-    from auth_window import AuthWindow
+    from view.auth_window import AuthWindow
     self.auth_window = AuthWindow()
     self.auth_window.show()
     self.close()  

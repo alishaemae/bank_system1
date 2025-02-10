@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QComboBox, QLineEdit, QStatusBar, QHBoxLayout
 from PyQt6 import QtCore
 from service.user_manager import UserManager
+from view.clients_list_w_controller import *
 
 class ClientsListWindow(QWidget):
     def __init__(self):
@@ -36,7 +37,7 @@ class ClientsListWindow(QWidget):
         self.back_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         # Позиционируем кнопку в правом нижнем углу (отступ 20 пикселей)
         self.back_button.move(720, 433)
-        self.back_button.raise_()
+        self.back_button.clicked.connect(lambda: open_auth_window(self))
 
         # Таблица клиентов
         self.tableWidget = QTableWidget(self)

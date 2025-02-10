@@ -8,9 +8,9 @@ from PyQt6.QtCore import Qt
 class AddEmployeeWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui_add_staff_window()
+        self.ui_add_employee_window()
 
-    def ui_add_staff_window(self):
+    def ui_add_employee_window(self):
         self.setWindowTitle("Добавление сотрудника")
         self.setFixedSize(701, 378)
 

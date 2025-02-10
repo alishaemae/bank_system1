@@ -1,7 +1,8 @@
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui
+from PyQt6.QtWidgets import QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QApplication
 
 
-class ClientInfoWindow(QtWidgets.QWidget):
+class ClientInfoWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.ui_client_info_window()
@@ -11,13 +12,13 @@ class ClientInfoWindow(QtWidgets.QWidget):
         self.setFixedSize(568, 319)
 
         # Создаем пользовательский вертикальный скролл-бар
-        self.custom_scroll = QtWidgets.QScrollBar(self)
+        self.custom_scroll = QScrollBar(self)
         self.custom_scroll.setOrientation(QtCore.Qt.Orientation.Vertical)
         # Располагаем скролл-бар слева – ширина 16 пикселей
         self.custom_scroll.setGeometry(0, 0, 16, 318)
 
         # Создаем list_widget рядом с пользовательским скролл-баром
-        self.list_widget = QtWidgets.QListWidget(self)
+        self.list_widget = QListWidget(self)
         # Сдвигаем list_widget вправо на ширину скролл-бара
         self.list_widget.setGeometry(QtCore.QRect(16, 0, 285, 318))
         font = QtGui.QFont()
@@ -34,7 +35,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
 
         # Добавляем 21 элемент в список
         for _ in range(22):
-            item = QtWidgets.QListWidgetItem()
+            item = QListWidgetItem()
             item_font = QtGui.QFont()
             item_font.setPointSize(10)
             item_font.setWeight(50)
@@ -52,19 +53,19 @@ class ClientInfoWindow(QtWidgets.QWidget):
             font_item.setBold(True)
             item.setFont(font_item)
 
-        self.tab_widget = QtWidgets.QTabWidget(self)
+        self.tab_widget = QTabWidget(self)
         self.tab_widget.setGeometry(QtCore.QRect(306, -1, 261, 320))
 
-        self.tab = QtWidgets.QWidget()
+        self.tab = QWidget()
         self.tab_widget.addTab(self.tab, "Счета")
 
-        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2 = QWidget()
         self.tab_widget.addTab(self.tab_2, "Карты")
 
-        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3 = QWidget()
         self.tab_widget.addTab(self.tab_3, "Вклады")
 
-        self.tab_4 = QtWidgets.QWidget()
+        self.tab_4 = QWidget()
         self.tab_widget.addTab(self.tab_4, "Кредиты")
 
         # Устанавливаем тексты элементов вручную (выравнены по левому краю внутри list_widget)
@@ -83,7 +84,7 @@ class ClientInfoWindow(QtWidgets.QWidget):
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     form = ClientInfoWindow()
     form.show()
     sys.exit(app.exec())
