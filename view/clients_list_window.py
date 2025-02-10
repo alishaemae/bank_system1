@@ -13,26 +13,25 @@ class ClientsListWindow(QWidget):
         self.setWindowTitle("Главное окно")
         self.setFixedSize(801, 478)
 
-        # Верхняя область с кнопками
-        self.horizontalLayoutWidget = QWidget(self)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 10, 761, 25))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-
-        # Кнопка "Личный кабинет"
-        self.user_info_button = QPushButton("Личный кабинет", self.horizontalLayoutWidget)
-        self.user_info_button.setFixedSize(130, 25)
-        self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-        self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
-        self.horizontalLayout.addWidget(self.user_info_button)
-
-        self.employees_button = QPushButton("Управление сотрудниками")
-        self.employees_button.setFixedSize(180, 25)
-        self.employees_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-
+        # Если пользователь - руководитель, то добавляем кнопку "Управление сотрудниками"
         if self.user.role == UserRole.BOSS:
-            self.horizontalLayout.addWidget(self.employees_button)
+            self.employees_button = QPushButton("Управление сотрудниками", self)
+            self.employees_button.setFixedSize(190, 25)
+            self.employees_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+            self.employees_button.setGeometry(QtCore.QRect(451, 10, 190, 25))
             self.employees_button.clicked.connect(lambda: open_employees_list_window(self))
+
+            self.user_info_button = QPushButton("Личный кабинет", self)
+            self.user_info_button.setFixedSize(130, 25)
+            self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+            self.user_info_button.setGeometry(QtCore.QRect(651, 10, 130, 25))
+            self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
+        else:
+            self.user_info_button = QPushButton("Личный кабинет", self)
+            self.user_info_button.setFixedSize(130, 25)
+            self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+            self.user_info_button.setGeometry(QtCore.QRect(651, 10, 130, 25))
+            self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
             
         # Кнопка "Создать отчет"
         self.report_button = QPushButton("Создать отчет", self)
