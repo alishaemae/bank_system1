@@ -51,6 +51,7 @@ class ClientsListWindow(QWidget):
         self.clients_table.setGeometry(QtCore.QRect(20, 70, 761, 343))
         self.clients_table.setColumnCount(4)
         self.clients_table.setHorizontalHeaderLabels(["ФИО", "Дата рождения", "Телефон", "Е-mail"])
+        self.clients_table.horizontalHeader().setDefaultAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.clients_table.setColumnWidth(0, 240)
         self.clients_table.setColumnWidth(1, 150)
         self.clients_table.setColumnWidth(2, 170)
@@ -62,10 +63,21 @@ class ClientsListWindow(QWidget):
 
         self.clients_table.setRowCount(len(self.clients))
         for i, client in enumerate(self.clients):
-            self.clients_table.setItem(i, 0, QTableWidgetItem(client.full_name))
-            self.clients_table.setItem(i, 1, QTableWidgetItem(client.birth_date.strftime("%d.%m.%Y")))
-            self.clients_table.setItem(i, 2, QTableWidgetItem(client.phone_number))
-            self.clients_table.setItem(i, 3, QTableWidgetItem(client.email))
+            item_full_name = QTableWidgetItem(client.full_name)
+            item_full_name.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.clients_table.setItem(i, 0, item_full_name)
+
+            item_birth_date = QTableWidgetItem(client.birth_date.strftime("%d.%m.%Y"))
+            item_birth_date.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.clients_table.setItem(i, 1, item_birth_date)
+
+            item_phone_number = QTableWidgetItem(client.phone_number)
+            item_phone_number.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.clients_table.setItem(i, 2, item_phone_number)
+
+            item_email = QTableWidgetItem(client.email)
+            item_email.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.clients_table.setItem(i, 3, item_email)
 
 
         # Панель поиска
