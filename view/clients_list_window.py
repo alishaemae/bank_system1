@@ -10,9 +10,10 @@ class ClientsListWindow(QWidget):
         self.user = UserManager().authorised_user
         self.clients = ClientManager().get_clients(self.user.id, self.user.role)
         if self.clients is None:
-            self.clients = []
+            self.all_clients = []
         else:
-            self.clients = sorted(self.clients, key=lambda client: client.full_name)   
+            self.all_clients = sorted(self.clients, key=lambda client: client.full_name)   
+        self.clients = self.all_clients[:]  
         self.ui_clients_list_window()
 
     def ui_clients_list_window(self):
@@ -52,8 +53,8 @@ class ClientsListWindow(QWidget):
         self.clients_table.setColumnCount(4)
         self.clients_table.setHorizontalHeaderLabels(["ФИО", "Дата рождения", "Телефон", "Е-mail"])
         # self.clients_table.horizontalHeader().setDefaultAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.clients_table.setColumnWidth(0, 225)
-        self.clients_table.setColumnWidth(1, 150)
+        self.clients_table.setColumnWidth(0, 260)
+        self.clients_table.setColumnWidth(1, 110)
         self.clients_table.setColumnWidth(2, 170)
         self.clients_table.setColumnWidth(3, 199)
         self.clients_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
@@ -61,8 +62,27 @@ class ClientsListWindow(QWidget):
         self.clients_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.clients_table.cellDoubleClicked.connect(lambda: open_client_info_window(self, self.clients[self.clients_table.currentRow()].id))
 
-        self.clients_table.setRowCount(len(self.clients))
-        for i, client in enumerate(self.clients):
+        self.populate_clients_table(self.clients)
+
+        self.horizontalLayoutWidget_2 = QWidget(self)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(16, 35, 320, 39))
+        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+
+        self.lineEdit = QLineEdit(self.horizontalLayoutWidget_2)
+        self.lineEdit.setFixedSize(260, 20)
+        self.lineEdit.setPlaceholderText("Введите фамилию/имя/отчество клиента")
+        self.horizontalLayout_2.addWidget(self.lineEdit)
+
+        self.search_btn = QPushButton("Поиск", self.horizontalLayoutWidget_2)
+        self.search_btn.setFixedSize(45, 20)
+        self.search_btn.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 15x; color: white; border: 0; border-radius: 4px;")
+        self.horizontalLayout_2.addWidget(self.search_btn)
+        self.search_btn.clicked.connect(lambda: search_clients(self))
+
+    def populate_clients_table(self, clients_list):
+        self.clients_table.setRowCount(len(clients_list))
+        for i, client in enumerate(clients_list):
             item_full_name = QTableWidgetItem(client.full_name)
             item_full_name.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             self.clients_table.setItem(i, 0, item_full_name)
@@ -78,19 +98,3 @@ class ClientsListWindow(QWidget):
             item_email = QTableWidgetItem(client.email)
             item_email.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             self.clients_table.setItem(i, 3, item_email)
-
-        # Панель поиска
-        self.horizontalLayoutWidget_2 = QWidget(self)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(16, 35, 320, 39))
-        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-
-        self.lineEdit = QLineEdit(self.horizontalLayoutWidget_2)
-        self.lineEdit.setFixedSize(260, 20)
-        self.lineEdit.setPlaceholderText("Введите фамилию/имя/отчество клиента")
-        self.horizontalLayout_2.addWidget(self.lineEdit)
-
-        self.search_btn = QPushButton("Поиск", self.horizontalLayoutWidget_2)
-        self.search_btn.setFixedSize(45, 20)
-        self.search_btn.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 15x; color: white; border: 0; border-radius: 4px;")
-        self.horizontalLayout_2.addWidget(self.search_btn)

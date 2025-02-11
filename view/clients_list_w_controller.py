@@ -20,3 +20,15 @@ def open_employees_list_window(self):
     self.employees_list_window = EmployeesListWindow()
     self.employees_list_window.show()
     self.close()
+
+def search_clients(self):
+    search_text = self.lineEdit.text().strip().lower().replace("ё", "е")
+    if search_text == "":
+        filtered = self.all_clients
+    else:
+        filtered = [
+            client for client in self.all_clients 
+            if search_text in client.full_name.lower().replace("ё", "е")
+        ]
+    self.clients = filtered
+    self.populate_clients_table(filtered)
