@@ -1,10 +1,14 @@
 from PyQt6 import QtCore, QtGui
-from PyQt6.QtWidgets import QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QApplication
+from PyQt6.QtWidgets import QDialog, QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QApplication
+from service.client_manager import ClientManager
+from service.user_manager import UserManager
 
 
-class ClientInfoWindow(QWidget):
-    def __init__(self):
+class ClientInfoWindow(QDialog):
+    def __init__(self, id_client):
         super().__init__()
+        self.user = UserManager().authorised_user
+        self.client = ClientManager().get_client_info(id_client)
         self.ui_client_info_window()
 
     def ui_client_info_window(self):
@@ -70,17 +74,28 @@ class ClientInfoWindow(QWidget):
 
         # Устанавливаем тексты ключей вручную (чётные индексы)
         self.list_widget.item(0).setText("ФИО:")
+        self.list_widget.item(1).setText(self.client.full_name)
         self.list_widget.item(2).setText("Менеджер:")
+        self.list_widget.item(3).setText(self.client.employee.full_name)
         self.list_widget.item(4).setText("Дата рождения:")
+        self.list_widget.item(5).setText(self.client.birth_date.strftime("%d.%m.%Y"))
         self.list_widget.item(6).setText("Номер телефона:")
+        self.list_widget.item(7).setText(self.client.phone_number)
         self.list_widget.item(8).setText("Адрес регистрации:")
+        self.list_widget.item(9).setText(self.client.registration_address)
         self.list_widget.item(10).setText("Адрес проживания:")
+        self.list_widget.item(11).setText(self.client.residential_address)
         self.list_widget.item(12).setText("E-mail:")
+        self.list_widget.item(13).setText(self.client.email)
         self.list_widget.item(14).setText("Серия и номер паспорта:")
+        self.list_widget.item(15).setText(str(self.client.passport_number))
         self.list_widget.item(16).setText("Дата выдачи паспорта:")
+        self.list_widget.item(17).setText(self.client.passport_issue_date.strftime("%d.%m.%Y"))
         self.list_widget.item(18).setText("ИНН:")
+        self.list_widget.item(19).setText(str(self.client.inn))
         self.list_widget.item(20).setText("Реестровый номер:")
         self.list_widget.item(22).setText("Дата регистрации в системе:")
+        self.list_widget.item(23).setText(self.client.registration_date.strftime("%d.%m.%Y"))
 
 
 if __name__ == "__main__":

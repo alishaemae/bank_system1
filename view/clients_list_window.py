@@ -59,7 +59,7 @@ class ClientsListWindow(QWidget):
         self.clients_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
         self.clients_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.clients_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
-        self.clients_table.cellDoubleClicked.connect(lambda: open_client_info_window(self))
+        self.clients_table.cellDoubleClicked.connect(lambda: open_client_info_window(self, self.clients[self.clients_table.currentRow()].id))
 
         self.clients_table.setRowCount(len(self.clients))
         for i, client in enumerate(self.clients):

@@ -10,10 +10,10 @@ def open_user_info_window(self):
     self.user_info_window.show()
     self.close()
 
-def open_client_info_window(self):
+def open_client_info_window(self, id_client):
     from view.client_info_window import ClientInfoWindow
-    self.client_info_window = ClientInfoWindow()
-    self.client_info_window.show()
+    self.client_info_window = ClientInfoWindow(id_client)
+    self.client_info_window.exec()
 
 def open_employees_list_window(self):
     from view.employees_list_window import EmployeesListWindow

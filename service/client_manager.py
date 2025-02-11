@@ -40,3 +40,40 @@ class ClientManager:
         else:
             QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None
+
+    def get_client_info(self, id_client):
+        database_manager = DatabaseManager()
+        query = database_manager.get_client_info_db(id_client)
+        if query.error is None:
+            result = query.result
+            if result:
+                client = Client(
+                    id=result[0],
+                    employee=User(
+                        id=result[1],
+                        role=result[2],
+                        job=result[3],
+                        last_name=result[4],
+                        first_name=result[5],
+                        middle_name=result[6],
+                        birth_date=None, address=None, phone_number=None, email=None, salary=0, login=None, password=None
+                    ),
+                    last_name=result[7],
+                    first_name=result[8],
+                    middle_name=result[9],
+                    birth_date=result[10],
+                    phone_number=result[11],
+                    registration_address=result[12],
+                    residential_address=result[13],
+                    email=result[14],
+                    passport_number=result[15],
+                    passport_issue_date=result[16],
+                    inn=result[17],
+                    registration_date=result[18]
+                )
+                return client
+            else:
+                return None
+        else:
+            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            return None
