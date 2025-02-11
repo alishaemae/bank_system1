@@ -24,3 +24,28 @@ class DatabaseManager:
                 return QueryResult(result, None)
         except Exception as e:
             return QueryResult(None, e)
+    
+    def get_clients_db(self, id_employee, role):
+        try:
+            with self.__engine.connect() as conn:
+                if role == UserRole.BOSS:
+                    query = text("""
+                        SELECT c.id, c.id_employee, e.role, e.job, e.last_name, e.first_name, e.middle_name,
+                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn, c.registration_date
+                        FROM clients c
+                        Join employees e on c.id_employee = e.id
+                        """)
+                else:
+                    query = text("""
+                        SELECT c.id, c.id_employee, e.role, e.job, e.last_name, e.first_name, e.middle_name,
+                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn, c.registration_date
+                        FROM clients c
+                        Join employees e on c.id_employee = e.id
+                        WHERE c.id_employee = :id_employee
+                        """)
+                result = conn.execute(query, {"id_employee": id_employee}).fetchall()
+                return QueryResult(result, None)
+        except Exception as e:
+            return QueryResult(None, e)
+                        
+                        

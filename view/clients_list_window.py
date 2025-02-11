@@ -1,12 +1,18 @@
-from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QComboBox, QLineEdit, QStatusBar, QHBoxLayout
+from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QTableWidgetItem, QComboBox, QLineEdit, QStatusBar, QHBoxLayout
 from PyQt6 import QtCore
 from service.user_manager import UserManager, UserRole
+from service.client_manager import ClientManager
 from view.clients_list_w_controller import *
 
 class ClientsListWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.user = UserManager().authorised_user
+        self.clients = ClientManager().get_clients(self.user.id, self.user.role)
+        if self.clients is None:
+            self.clients = []
+        else:
+            self.clients = sorted(self.clients, key=lambda client: client.full_name)   
         self.ui_clients_list_window()
 
     def ui_clients_list_window(self):
@@ -21,17 +27,11 @@ class ClientsListWindow(QWidget):
             self.employees_button.setGeometry(QtCore.QRect(451, 10, 190, 25))
             self.employees_button.clicked.connect(lambda: open_employees_list_window(self))
 
-            self.user_info_button = QPushButton("Личный кабинет", self)
-            self.user_info_button.setFixedSize(130, 25)
-            self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-            self.user_info_button.setGeometry(QtCore.QRect(651, 10, 130, 25))
-            self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
-        else:
-            self.user_info_button = QPushButton("Личный кабинет", self)
-            self.user_info_button.setFixedSize(130, 25)
-            self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
-            self.user_info_button.setGeometry(QtCore.QRect(651, 10, 130, 25))
-            self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
+        self.user_info_button = QPushButton("Личный кабинет", self)
+        self.user_info_button.setFixedSize(130, 25)
+        self.user_info_button.setStyleSheet("background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
+        self.user_info_button.setGeometry(QtCore.QRect(651, 10, 130, 25))
+        self.user_info_button.clicked.connect(lambda: open_user_info_window(self))
             
         # Кнопка "Создать отчет"
         self.report_button = QPushButton("Создать отчет", self)
@@ -58,8 +58,15 @@ class ClientsListWindow(QWidget):
         self.clients_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
         self.clients_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.clients_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
-
         self.clients_table.cellDoubleClicked.connect(lambda: open_client_info_window(self))
+
+        self.clients_table.setRowCount(len(self.clients))
+        for i, client in enumerate(self.clients):
+            self.clients_table.setItem(i, 0, QTableWidgetItem(client.full_name))
+            self.clients_table.setItem(i, 1, QTableWidgetItem(client.birth_date.strftime("%d.%m.%Y")))
+            self.clients_table.setItem(i, 2, QTableWidgetItem(client.phone_number))
+            self.clients_table.setItem(i, 3, QTableWidgetItem(client.email))
+
 
         # Панель поиска
         self.horizontalLayoutWidget_2 = QWidget(self)
