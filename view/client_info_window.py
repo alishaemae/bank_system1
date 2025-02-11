@@ -33,8 +33,8 @@ class ClientInfoWindow(QWidget):
         self.custom_scroll.valueChanged.connect(internal_scroll.setValue)
         internal_scroll.valueChanged.connect(self.custom_scroll.setValue)
 
-        # Добавляем 21 элемент в список
-        for _ in range(22):
+        # Добавляем 24 элемента в список (12 пар: ключ – значение)
+        for _ in range(24):
             item = QListWidgetItem()
             item_font = QtGui.QFont()
             item_font.setPointSize(10)
@@ -44,9 +44,9 @@ class ClientInfoWindow(QWidget):
             item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
             self.list_widget.addItem(item)
 
-        # Применяем стиль к данным клиента для индексов: 1,3,5,7,9,11,13,15,17,19
-        indices = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
-        for idx in indices:
+        # Применяем стиль к элементам значений (нечетные индексы)
+        value_indices = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
+        for idx in value_indices:
             item = self.list_widget.item(idx)
             item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
             font_item = item.font()
@@ -68,18 +68,19 @@ class ClientInfoWindow(QWidget):
         self.tab_4 = QWidget()
         self.tab_widget.addTab(self.tab_4, "Кредиты")
 
-        # Устанавливаем тексты элементов вручную (выравнены по левому краю внутри list_widget)
+        # Устанавливаем тексты ключей вручную (чётные индексы)
         self.list_widget.item(0).setText("ФИО:")
-        self.list_widget.item(2).setText("Дата рождения:")
-        self.list_widget.item(4).setText("Номер телефона:")
-        self.list_widget.item(6).setText("Адрес регистрации:")
-        self.list_widget.item(8).setText("Адрес проживания:")
-        self.list_widget.item(10).setText("E-mail:")
-        self.list_widget.item(12).setText("Серия и номер паспорта:")
-        self.list_widget.item(14).setText("Дата выдачи паспорта:")
-        self.list_widget.item(16).setText("ИНН:")
-        self.list_widget.item(18).setText("Реестровый номер:")
-        self.list_widget.item(20).setText("Дата регистрации в системе:")
+        self.list_widget.item(2).setText("Менеджер:")
+        self.list_widget.item(4).setText("Дата рождения:")
+        self.list_widget.item(6).setText("Номер телефона:")
+        self.list_widget.item(8).setText("Адрес регистрации:")
+        self.list_widget.item(10).setText("Адрес проживания:")
+        self.list_widget.item(12).setText("E-mail:")
+        self.list_widget.item(14).setText("Серия и номер паспорта:")
+        self.list_widget.item(16).setText("Дата выдачи паспорта:")
+        self.list_widget.item(18).setText("ИНН:")
+        self.list_widget.item(20).setText("Реестровый номер:")
+        self.list_widget.item(22).setText("Дата регистрации в системе:")
 
 
 if __name__ == "__main__":
