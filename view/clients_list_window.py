@@ -81,13 +81,13 @@ class ClientsListWindow(QWidget):
 
         # Панель поиска
         self.horizontalLayoutWidget_2 = QWidget(self)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(20, 35, 357, 39))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(16, 35, 320, 39))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
 
         self.lineEdit = QLineEdit(self.horizontalLayoutWidget_2)
-        self.lineEdit.setFixedSize(300, 20)
-        self.lineEdit.setPlaceholderText("Введите фамилию/имя/отчество клиента:")
+        self.lineEdit.setFixedSize(260, 20)
+        self.lineEdit.setPlaceholderText("Введите фамилию/имя/отчество клиента")
         self.horizontalLayout_2.addWidget(self.lineEdit)
 
         self.search_btn = QPushButton("Поиск", self.horizontalLayoutWidget_2)
