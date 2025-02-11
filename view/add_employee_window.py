@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import (
     QApplication, QPushButton, QVBoxLayout, QHBoxLayout,
-    QWidget, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy
+    QWidget, QLabel, QLineEdit, QComboBox
 )
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QRect
 from view.add_employee_w_controller import *
 
 
@@ -15,40 +15,36 @@ class AddEmployeeWindow(QWidget):
         self.setWindowTitle("Добавление сотрудника")
         self.setFixedSize(801, 478)
 
-        # Основной layout с отступами по краям
-        main_layout = QVBoxLayout(self)
-        main_layout.setContentsMargins(10, 10, 10, 10)
-        main_layout.setSpacing(5)
+        # Кнопка "Добавить сотрудника" – позиционируется как в employees_list_window
+        self.add_employee_button = QPushButton("Добавить сотрудника", self)
+        self.add_employee_button.setFixedSize(160, 25)
+        self.add_employee_button.setStyleSheet(
+            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.add_employee_button.setGeometry(QRect(620, 10, 160, 25))
+        self.add_employee_button.clicked.connect(lambda: update_or_add_staff(self))
+        
+        # Кнопка "Назад" – позиционируется как в employees_list_window
+        self.back_button = QPushButton("Назад", self)
+        self.back_button.setFixedSize(60, 25)
+        self.back_button.setStyleSheet(
+            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        self.back_button.setGeometry(QRect(720, 433, 60, 25))
+        self.back_button.clicked.connect(lambda: open_employees_list_window(self))
 
-        # Верхняя панель с кнопкой "Добавить сотрудника"
-        top_layout = QHBoxLayout()
+        # Остальные элементы формы располагаются с помощью layout
+        main_layout = QVBoxLayout(self)
+        # Отступ сверху и снизу, чтобы не перекрывать кнопки
+        main_layout.setContentsMargins(10, 30, 10, 60)
+        main_layout.setSpacing(5)
 
         self.error_label = QLabel("")
         self.error_label.setFixedHeight(22)
         self.error_label.setStyleSheet("color: red; font-size: 14px;")
         self.error_label.setText("Заполните все поля")
-        top_layout.addWidget(self.error_label)
+        main_layout.addWidget(self.error_label)
 
-        # Добавляем растяжитель, чтобы кнопка сместилась вправо
-        top_layout.addStretch()
-
-        self.add_employee_button = QPushButton("Добавить сотрудника")
-        self.add_employee_button.setFixedSize(160, 25)
-        self.add_employee_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
-        top_layout.addWidget(self.add_employee_button)
-        # top_layout.addStretch()
-
-        # Инициализируем кнопку "Назад" (не трогаем расположение кнопок)
-        self.back_button = QPushButton("Назад")
-        self.back_button.setFixedSize(60, 25)
-        self.back_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;"
-        )
-        self.back_button.clicked.connect(lambda: open_employees_list_window(self))
-
-        # Левый столбец (форма 1)
-        form_layout = QVBoxLayout()
+        # Левая колонка (форма 1)
+        form_layout_left = QVBoxLayout()
         self.login_label = QLabel("Логин")
         self.login_input = QLineEdit()
         self.login_input.setFixedHeight(25)
@@ -75,21 +71,21 @@ class AddEmployeeWindow(QWidget):
         self.middle_name_input = QLineEdit()
         self.middle_name_input.setFixedHeight(25)
 
-        form_layout.addWidget(self.login_label)
-        form_layout.addWidget(self.login_input)
-        form_layout.addWidget(self.password_label)
-        form_layout.addWidget(self.password_input)
-        form_layout.addWidget(self.role_label)
-        form_layout.addWidget(self.role_input)
-        form_layout.addWidget(self.last_name_label)
-        form_layout.addWidget(self.last_name_input)
-        form_layout.addWidget(self.first_name_label)
-        form_layout.addWidget(self.first_name_input)
-        form_layout.addWidget(self.middle_name_label)
-        form_layout.addWidget(self.middle_name_input)
+        form_layout_left.addWidget(self.login_label)
+        form_layout_left.addWidget(self.login_input)
+        form_layout_left.addWidget(self.password_label)
+        form_layout_left.addWidget(self.password_input)
+        form_layout_left.addWidget(self.role_label)
+        form_layout_left.addWidget(self.role_input)
+        form_layout_left.addWidget(self.last_name_label)
+        form_layout_left.addWidget(self.last_name_input)
+        form_layout_left.addWidget(self.first_name_label)
+        form_layout_left.addWidget(self.first_name_input)
+        form_layout_left.addWidget(self.middle_name_label)
+        form_layout_left.addWidget(self.middle_name_input)
 
-        # Правый столбец (форма 2)
-        form_1_layout = QVBoxLayout()
+        # Правая колонка (форма 2)
+        form_layout_right = QVBoxLayout()
         self.job_label = QLabel("Должность")
         self.job_input = QLineEdit()
         self.job_input.setFixedHeight(25)
@@ -114,38 +110,24 @@ class AddEmployeeWindow(QWidget):
         self.email_input = QLineEdit()
         self.email_input.setFixedHeight(25)
 
-        form_1_layout.addWidget(self.job_label)
-        form_1_layout.addWidget(self.job_input)
-        form_1_layout.addWidget(self.birth_date_label)
-        form_1_layout.addWidget(self.birth_date_input)
-        form_1_layout.addWidget(self.address_label)
-        form_1_layout.addWidget(self.address_input)
-        form_1_layout.addWidget(self.phone_label)
-        form_1_layout.addWidget(self.phone_input)
-        form_1_layout.addWidget(self.salary_label)
-        form_1_layout.addWidget(self.salary_input)
-        form_1_layout.addWidget(self.email_label)
-        form_1_layout.addWidget(self.email_input)
+        form_layout_right.addWidget(self.job_label)
+        form_layout_right.addWidget(self.job_input)
+        form_layout_right.addWidget(self.birth_date_label)
+        form_layout_right.addWidget(self.birth_date_input)
+        form_layout_right.addWidget(self.address_label)
+        form_layout_right.addWidget(self.address_input)
+        form_layout_right.addWidget(self.phone_label)
+        form_layout_right.addWidget(self.phone_input)
+        form_layout_right.addWidget(self.salary_label)
+        form_layout_right.addWidget(self.salary_input)
+        form_layout_right.addWidget(self.email_label)
+        form_layout_right.addWidget(self.email_input)
 
         # Расположение форм в два столбца
-        parallel_layout = QHBoxLayout()
-        parallel_layout.addLayout(form_layout, 1)
-        parallel_layout.addLayout(form_1_layout, 1)
-
-        # Добавляем верхнюю панель и формы
-        main_layout.addLayout(top_layout)
-        # Отступ между кнопками и формами – так, чтобы названия полей ушли ниже
-        main_layout.addSpacing(10)
-        main_layout.addLayout(parallel_layout)
-
-        # Вместо растяжителя добавляем фиксированный отступ, чтобы кнопку "Назад" разместить ниже
-        main_layout.addSpacing(9)
-
-        # Нижняя панель с кнопкой "Назад" в правом нижнем углу
-        exit_layout = QHBoxLayout()
-        exit_layout.addWidget(self.back_button)
-        exit_layout.setAlignment(self.back_button, Qt.AlignmentFlag.AlignRight)
-        main_layout.addLayout(exit_layout)
+        forms_layout = QHBoxLayout()
+        forms_layout.addLayout(form_layout_left)
+        forms_layout.addLayout(form_layout_right)
+        main_layout.addLayout(forms_layout)
 
         self.setLayout(main_layout)
 

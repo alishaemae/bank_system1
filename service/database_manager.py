@@ -62,5 +62,31 @@ class DatabaseManager:
                 return QueryResult(result, None)
         except Exception as e:
             return QueryResult(None, e)
+    
+    def get_employees_db(self):
+        try:
+            with self.__engine.connect() as conn:
+                query = text("""
+                    SELECT id, role, job, last_name, first_name, middle_name, birth_date, address, phone_number, email, salary, login
+                    FROM employees
+                    WHERE deleted is null
+                    """)
+                result = conn.execute(query).fetchall()
+                return QueryResult(result, None)
+        except Exception as e:
+            return QueryResult(None, e)
+    
+    def update_deleted_status_employee_db(self, id_employee):
+        try:
+            with self.__engine.begin() as conn:
+                query = text("""
+                    UPDATE employees
+                    set deleted = current_timestamp()
+                    WHERE id = :id_employee
+                    """)
+                conn.execute(query, {"id_employee": id_employee})
+                return QueryResult(None, None)
+        except Exception as e:
+            return QueryResult(None, e)
                         
                         

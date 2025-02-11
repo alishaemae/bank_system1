@@ -46,32 +46,40 @@ class UserManager(metaclass=SingletonMeta):
         else:
             return "Ошибка подключения к базе данных"
     
-    # def get_staffs_info(self):
-    #     data_service = DatabaseService()
-    #     query = data_service.get_staffs_info_db()
-    #     if query.error is None:
-    #         result = query.result
-    #         if result:
-    #             staffs = [User(
-    #                 id_staff=staff[0],
-    #                 role=staff[1],
-    #                 job=staff[2],
-    #                 last_name=staff[3],
-    #                 first_name=staff[4],
-    #                 middle_name=staff[5],
-    #                 birth_date=staff[6],
-    #                 address=staff[7],
-    #                 phone_number=staff[8],
-    #                 salary=staff[9],
-    #                 login=staff[10], 
-    #                 password=0
-    #                 )
-    #                 for staff in result]
-    #             return staffs
-    #         else:
-    #             return "Сотрудники не найдены"
-    #     else:
-    #         return f"Ошибка подключения к базе данных: {query.error}"
+    def get_employees(self):
+        data_service = DatabaseManager()
+        query = data_service.get_employees_db()
+        if query.error is None:
+            result = query.result
+            if result:
+                employees = [User(
+                    id=row[0],
+                    role=row[1],
+                    job=row[2],
+                    last_name=row[3],
+                    first_name=row[4],
+                    middle_name=row[5],
+                    birth_date=row[6],
+                    address=row[7],
+                    phone_number=row[8],
+                    email=row[9],
+                    salary=row[10],
+                    login=row[11],
+                    password=None
+                ) for row in result]
+                return employees
+            else:
+                return "Сотрудники не найдены"
+        else:
+            return f"Ошибка подключения к базе данных: {query.error}"
+    
+    def update_deleted_status_employee(self, id_employee):
+        data_service = DatabaseManager()
+        query = data_service.update_deleted_status_employee_db(id_employee)
+        if query.error is None:
+            return ""
+        else:
+            return f"Ошибка подключения к базе данных: {query.error}"
 
     # def check_exist_login(self, login):
     #     data_service = DatabaseService()
@@ -94,13 +102,7 @@ class UserManager(metaclass=SingletonMeta):
     #     else:
     #         return None
 
-    # def update_deleted_status_staff(self, id_staff):
-    #     data_service = DatabaseService()
-    #     query = data_service.update_deleted_status_staff_db(id_staff)
-    #     if query.error is None:
-    #         return ""
-    #     else:
-    #         return f"Ошибка подключения к базе данных: {query.error}"
+
     
     # def add_staff(self, login, password, role, last_name, first_name, middle_name, job, birth_date, address, phone_number, salary):
     #     data_service = DatabaseService()

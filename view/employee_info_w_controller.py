@@ -10,7 +10,7 @@ def open_emloyees_list_window(self):
 def delete_employee(self):
     msg = QMessageBox(self)
     msg.setWindowTitle("Подтверждение")
-    msg.setText(f"Скрыть сотрудника {self.staff.full_name}?")
+    msg.setText(f"Удалить сотрудника {self.employee.full_name}?")
     msg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
     yes_button = msg.button(QMessageBox.StandardButton.Yes)
     no_button = msg.button(QMessageBox.StandardButton.No)
@@ -20,7 +20,7 @@ def delete_employee(self):
 
     if result == QMessageBox.StandardButton.Yes:
         user_service = UserManager()
-        result = user_service.update_deleted_status_staff(self.staff.id_staff)
+        result = user_service.update_deleted_status_employee(self.employee.id)
         if result == "":
             open_emloyees_list_window(self)
         else:
