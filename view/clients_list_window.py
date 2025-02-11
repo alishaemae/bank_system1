@@ -79,19 +79,15 @@ class ClientsListWindow(QWidget):
             item_email.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             self.clients_table.setItem(i, 3, item_email)
 
-
         # Панель поиска
         self.horizontalLayoutWidget_2 = QWidget(self)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(20, 35, 357, 39))
         self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
 
-        self.comboBox = QComboBox(self.horizontalLayoutWidget_2)
-        self.comboBox.addItem("Выберите")
-        self.horizontalLayout_2.addWidget(self.comboBox)
-
         self.lineEdit = QLineEdit(self.horizontalLayoutWidget_2)
-        self.lineEdit.setFixedSize(150, 20)
+        self.lineEdit.setFixedSize(300, 20)
+        self.lineEdit.setPlaceholderText("Введите фамилию/имя/отчество клиента:")
         self.horizontalLayout_2.addWidget(self.lineEdit)
 
         self.search_btn = QPushButton("Поиск", self.horizontalLayoutWidget_2)
