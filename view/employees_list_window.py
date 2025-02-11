@@ -29,7 +29,7 @@ class EmployeesListWindow(QWidget):
         self.employees_table.setColumnWidth(1, 150)
         self.employees_table.setColumnWidth(2, 165)
         self.employees_table.setColumnWidth(3, 199)
-        self.employees_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
+        # self.employees_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
 
  
         self.employees_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)

@@ -13,7 +13,7 @@ class AddEmployeeWindow(QWidget):
 
     def ui_add_employee_window(self):
         self.setWindowTitle("Добавление сотрудника")
-        self.setFixedSize(701, 378)
+        self.setFixedSize(801, 478)
 
         # Основной layout с отступами по краям
         main_layout = QVBoxLayout(self)
@@ -22,20 +22,22 @@ class AddEmployeeWindow(QWidget):
 
         # Верхняя панель с кнопкой "Добавить сотрудника"
         top_layout = QHBoxLayout()
-        self.add_employee_button = QPushButton("Добавить сотрудника")
-        self.add_employee_button.setFixedSize(180, 25)
-        self.add_employee_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;"
-        )
-        # Здесь оставляем только кнопку добавления, кнопку "Назад" убираем из верхней панели
-        top_layout.addWidget(self.add_employee_button)
-        top_layout.addStretch()
 
         self.error_label = QLabel("")
         self.error_label.setFixedHeight(22)
         self.error_label.setStyleSheet("color: red; font-size: 14px;")
-        top_layout.addWidget(self.error_label)
         self.error_label.setText("Заполните все поля")
+        top_layout.addWidget(self.error_label)
+
+        # Добавляем растяжитель, чтобы кнопка сместилась вправо
+        top_layout.addStretch()
+
+        self.add_employee_button = QPushButton("Добавить сотрудника")
+        self.add_employee_button.setFixedSize(160, 25)
+        self.add_employee_button.setStyleSheet(
+            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
+        top_layout.addWidget(self.add_employee_button)
+        # top_layout.addStretch()
 
         # Инициализируем кнопку "Назад" (не трогаем расположение кнопок)
         self.back_button = QPushButton("Назад")
