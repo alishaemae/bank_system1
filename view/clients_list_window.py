@@ -56,7 +56,7 @@ class ClientsListWindow(QWidget):
         self.clients_table.setColumnWidth(0, 260)
         self.clients_table.setColumnWidth(1, 110)
         self.clients_table.setColumnWidth(2, 170)
-        self.clients_table.setColumnWidth(3, 199)
+        self.clients_table.setColumnWidth(3, 204)
         # self.clients_table.setStyleSheet("border: 1px solid rgb(30, 138, 86);")
         self.clients_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.clients_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)

@@ -34,14 +34,14 @@ class AddEmployeeWindow(QWidget):
         # Остальные элементы формы располагаются с помощью layout
         main_layout = QVBoxLayout(self)
         # Отступ сверху и снизу, чтобы не перекрывать кнопки
-        main_layout.setContentsMargins(10, 30, 10, 60)
+        main_layout.setContentsMargins(20, 30, 20, 60)
         main_layout.setSpacing(5)
 
-        self.error_label = QLabel("")
+        self.error_label = QLabel("", self)
         self.error_label.setFixedHeight(22)
         self.error_label.setStyleSheet("color: red; font-size: 14px;")
         self.error_label.setText("Заполните все поля")
-        main_layout.addWidget(self.error_label)
+        self.error_label.setGeometry(QRect(20, 10, 300, 25))
 
         # Левая колонка (форма 1)
         form_layout_left = QVBoxLayout()
@@ -126,6 +126,7 @@ class AddEmployeeWindow(QWidget):
         # Расположение форм в два столбца
         forms_layout = QHBoxLayout()
         forms_layout.addLayout(form_layout_left)
+        forms_layout.addSpacing(60)
         forms_layout.addLayout(form_layout_right)
         main_layout.addLayout(forms_layout)
 
