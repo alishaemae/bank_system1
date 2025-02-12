@@ -38,7 +38,7 @@ class UserInfoWindow(QWidget):
         
         font = QtGui.QFont()
         font.setPointSize(10)
-        value_style = "font-size: 14px; color: rgb(30, 138, 86); font-weight: bold; border: 1px whight; padding: 2px;"
+        value_style = "font-size: 14px; color: rgb(30, 138, 86); font-weight: bold; border: 1px; padding: 2px;"
         
         # Строка: Дата рождения (левый блок)
         dob_label = QLabel("Дата рождения:")

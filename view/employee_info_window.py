@@ -106,17 +106,17 @@ class EmployeeInfoWindow(QWidget):
         self.back_button = QPushButton("Назад", self)
         self.back_button.setFixedSize(60, 25)
         self.back_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; border: 0; border-radius: 4px;"
+            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;"
         )
         self.back_button.move(720, 433)
         self.back_button.clicked.connect(lambda: open_emloyees_list_window(self))
 
         self.delete_button = QPushButton("Удалить сотрудника", self)
-        self.delete_button.setFixedSize(150, 25)
+        self.delete_button.setFixedSize(160, 25)
         self.delete_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; border: 0; border-radius: 4px;"
+            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;"
         )
-        self.delete_button.setGeometry(QtCore.QRect(630, 10, 150, 25))
+        self.delete_button.setGeometry(QtCore.QRect(620, 10, 160, 25))
         self.delete_button.clicked.connect(lambda: delete_employee(self))
 
 
