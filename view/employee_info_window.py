@@ -116,7 +116,7 @@ class EmployeeInfoWindow(QWidget):
         self.delete_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; border: 0; border-radius: 4px;"
         )
-        self.delete_button.move(629, 20)
+        self.delete_button.setGeometry(QtCore.QRect(630, 10, 150, 25))
         self.delete_button.clicked.connect(lambda: delete_employee(self))
 
 
