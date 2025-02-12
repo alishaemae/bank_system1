@@ -1,6 +1,7 @@
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QPushButton
 from view.employee_info_w_controller import *
+from data.user import UserRole
 
 
 class EmployeeInfoWindow(QWidget):
@@ -111,13 +112,14 @@ class EmployeeInfoWindow(QWidget):
         self.back_button.move(720, 433)
         self.back_button.clicked.connect(lambda: open_emloyees_list_window(self))
 
-        self.delete_button = QPushButton("Удалить сотрудника", self)
-        self.delete_button.setFixedSize(160, 25)
-        self.delete_button.setStyleSheet(
-            "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;"
-        )
-        self.delete_button.setGeometry(QtCore.QRect(620, 10, 160, 25))
-        self.delete_button.clicked.connect(lambda: delete_employee(self))
+        if self.employee.role == UserRole.MANAGER:
+            self.delete_button = QPushButton("Удалить сотрудника", self)
+            self.delete_button.setFixedSize(160, 25)
+            self.delete_button.setStyleSheet(
+                "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;"
+            )
+            self.delete_button.setGeometry(QtCore.QRect(620, 10, 160, 25))
+            self.delete_button.clicked.connect(lambda: delete_employee(self))
 
 
 # if __name__ == "__main__":

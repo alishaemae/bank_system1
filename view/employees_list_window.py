@@ -5,16 +5,17 @@ from PyQt6.QtWidgets import (
 )
 from view.employees_list_w_controller import *
 from service.user_manager import UserManager
-from data.user import UserRole
+from data.user import UserRole, User
 
 class EmployeesListWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.user = UserManager().authorised_user
         self.employees = UserManager().get_employees()
         if self.employees is None:
             self.employees = []
         else:
-            self.employees = [employee for employee in self.employees if employee.role != UserRole.BOSS]
+            self.employees = [employee for employee in self.employees if employee.id != self.user.id]
             self.employees = sorted(self.employees, key=lambda employee: employee.last_name)
         self.ui_employees_list_window()
     
