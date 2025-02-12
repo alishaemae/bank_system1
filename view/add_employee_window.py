@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, QRect
 from view.add_employee_w_controller import *
+from data.user import UserRole
 
 
 class AddEmployeeWindow(QWidget):
@@ -21,7 +22,7 @@ class AddEmployeeWindow(QWidget):
         self.add_employee_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
         self.add_employee_button.setGeometry(QRect(620, 10, 160, 25))
-        self.add_employee_button.clicked.connect(lambda: update_or_add_staff(self))
+        self.add_employee_button.clicked.connect(lambda: add_staff(self))
         
         # Кнопка "Назад" – позиционируется как в employees_list_window
         self.back_button = QPushButton("Назад", self)
@@ -40,8 +41,8 @@ class AddEmployeeWindow(QWidget):
         self.error_label = QLabel("", self)
         self.error_label.setFixedHeight(22)
         self.error_label.setStyleSheet("color: red; font-size: 14px;")
-        self.error_label.setText("Заполните все поля")
-        self.error_label.setGeometry(QRect(20, 10, 300, 25))
+        # self.error_label.setText("Заполните все поля")
+        self.error_label.setGeometry(QRect(20, 10, 350, 25))
 
         # Левая колонка (форма 1)
         form_layout_left = QVBoxLayout()
@@ -57,7 +58,11 @@ class AddEmployeeWindow(QWidget):
         self.role_label = QLabel("Роль")
         self.role_input = QComboBox()
         self.role_input.setFixedHeight(25)
-        self.role_input.addItems(["Администратор", "Сотрудник"])
+        translations = {
+            'MANAGER': 'Менеджер',
+            'BOSS': 'Начальник'
+        }
+        self.role_input.addItems([translations.get(role.name, role.name) for role in UserRole])
 
         self.last_name_label = QLabel("Фамилия")
         self.last_name_input = QLineEdit()

@@ -89,4 +89,27 @@ class DatabaseManager:
         except Exception as e:
             return QueryResult(None, e)
                         
-                        
+    def check_exist_login_db(self, login):
+        try:
+            with self.__engine.connect() as conn:
+                query = text("""
+                    SELECT id, role, login
+                    FROM employees
+                    WHERE login = :login
+                    """)
+                result = conn.execute(query, {"login": login}).fetchone()
+                return QueryResult(result, None)
+        except Exception as e:
+            return QueryResult(None, e)
+    
+    def add_employee_db(self, login, password, role, last_name, first_name, middle_name, job, birth_date, address, phone_number, email, salary):
+        try:
+            with self.__engine.begin() as conn:
+                query = text("""
+                    INSERT INTO employees (role, job, last_name, first_name, middle_name, birth_date, address, phone_number, email, salary, login, password)
+                    VALUES (:role, :job, :last_name, :first_name, :middle_name, :birth_date, :address, :phone_number, :email, :salary, :login, :password)
+                    """)
+                conn.execute(query, {"role": role, "job": job, "last_name": last_name, "first_name": first_name, "middle_name": middle_name, "birth_date": birth_date, "address": address, "phone_number": phone_number, "email": email, "salary": salary, "login": login, "password": password})
+                return QueryResult(None, None)
+        except Exception as e:
+            return QueryResult(None, e)
