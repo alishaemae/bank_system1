@@ -33,7 +33,7 @@ def add_staff(self):
     email = self.email_input.text()
     
     if check_fields(self):
-        if phone_number.startswith("+7") or len(phone_number) == 16 or phone_number.isdigit().replace("-", "").replace(" ", ""):
+        if phone_number.replace("+","").replace("-", "").replace(" ", "").isdigit():
             if re.fullmatch(r"^\+7 \d{3} \d{3}-\d{2}-\d{2}$", phone_number):
                 if re.fullmatch(r"^\d{4}-\d{2}-\d{2}$", birth_date):
                     if salary.isdigit():
@@ -45,14 +45,14 @@ def add_staff(self):
                         else:
                             self.error_label.setText("Логин занят!")
                     else:
-                        self.error_label.setText("Зарплата должна быть числом!")
+                        self.error_label.setText("Зарплата должна содержать только цифры!")
                         self.salary_input.clear()
                 else:
                     self.error_label.setText("Формат даты рождения: YYYY-MM-DD")
             else:
                 self.error_label.setText("Формат номера телефона: +7 XXX XXX-XX-XX")
         else:
-            self.error_label.setText("Некорректный номер телефона!")
+            self.error_label.setText("Номер телефона должен содержать только цифры!")
     else:
         self.error_label.setText("Заполните все поля!")
 
