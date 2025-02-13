@@ -98,8 +98,6 @@ class UserManager(metaclass=SingletonMeta):
                 return None
         else:
             return None
-
-
     
     def add_employee(self, login, password, role, last_name, first_name, middle_name, job, birth_date, address, phone_number, email, salary):
         data_service = DatabaseManager()

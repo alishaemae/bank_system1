@@ -37,8 +37,7 @@ class ClientInfoWindow(QDialog):
         self.custom_scroll.valueChanged.connect(internal_scroll.setValue)
         internal_scroll.valueChanged.connect(self.custom_scroll.setValue)
 
-        # Добавляем 24 элемента в список (12 пар: ключ – значение)
-        for _ in range(24):
+        for _ in range(20):
             item = QListWidgetItem()
             item_font = QtGui.QFont()
             item_font.setPointSize(10)
@@ -49,7 +48,7 @@ class ClientInfoWindow(QDialog):
             self.list_widget.addItem(item)
 
         # Применяем стиль к элементам значений (нечетные индексы)
-        value_indices = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
+        value_indices = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
         for idx in value_indices:
             item = self.list_widget.item(idx)
             item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
@@ -93,9 +92,6 @@ class ClientInfoWindow(QDialog):
         self.list_widget.item(17).setText(self.client.passport_issue_date.strftime("%d.%m.%Y"))
         self.list_widget.item(18).setText("ИНН:")
         self.list_widget.item(19).setText(str(self.client.inn))
-        self.list_widget.item(20).setText("Реестровый номер:")
-        self.list_widget.item(22).setText("Дата регистрации в системе:")
-        self.list_widget.item(23).setText(self.client.registration_date.strftime("%d.%m.%Y"))
 
 
 if __name__ == "__main__":

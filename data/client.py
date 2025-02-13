@@ -7,7 +7,7 @@ class Client:
     def full_passport_info(self):
         return f"{self.passport_number} {self.passport_issue_date}"
      
-    def __init__(self, id, employee,last_name, first_name, middle_name, birth_date, phone_number, registration_address, residential_address, email, passport_number, passport_issue_date, inn, registration_date):
+    def __init__(self, id, employee,last_name, first_name, middle_name, birth_date, phone_number, registration_address, residential_address, email, passport_number, passport_issue_date, inn):
         self.id = int(id)
         self.employee = employee
         self.last_name = str(last_name)
@@ -21,4 +21,3 @@ class Client:
         self.passport_number = int(passport_number)
         self.passport_issue_date = passport_issue_date
         self.inn = int(inn)
-        self.registration_date = registration_date

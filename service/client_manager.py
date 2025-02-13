@@ -32,7 +32,6 @@ class ClientManager:
                     passport_number=row[15],
                     passport_issue_date=row[16],
                     inn=row[17],
-                    registration_date=row[18]
                 ) for row in result]
                 return clients
             else:
@@ -69,7 +68,6 @@ class ClientManager:
                     passport_number=result[15],
                     passport_issue_date=result[16],
                     inn=result[17],
-                    registration_date=result[18]
                 )
                 return client
             else:

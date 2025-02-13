@@ -31,14 +31,14 @@ class DatabaseManager:
                 if role == UserRole.BOSS:
                     query = text("""
                         SELECT c.id, c.id_employee, e.role, e.job, e.last_name, e.first_name, e.middle_name,
-                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn, c.registration_date
+                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn
                         FROM clients c
                         Join employees e on c.id_employee = e.id
                         """)
                 else:
                     query = text("""
                         SELECT c.id, c.id_employee, e.role, e.job, e.last_name, e.first_name, e.middle_name,
-                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn, c.registration_date
+                                 c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn
                         FROM clients c
                         Join employees e on c.id_employee = e.id
                         WHERE c.id_employee = :id_employee
@@ -53,7 +53,7 @@ class DatabaseManager:
             with self.__engine.connect() as conn:
                 query = text("""
                     SELECT c.id, c.id_employee, e.role, e.job, e.last_name, e.first_name, e.middle_name,
-                             c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn, c.registration_date
+                             c.last_name, c.first_name, c.middle_name, c.birth_date, c.phone_number, c.registration_address, c.residential_address, c.email, c.passport_number, c.passport_issue_date, c.inn
                     FROM clients c
                     Join employees e on c.id_employee = e.id
                     WHERE c.id = :id_client
