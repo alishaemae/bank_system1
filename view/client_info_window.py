@@ -1,7 +1,3 @@
-# import sys
-# import os
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import (
     QDialog, QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QVBoxLayout
@@ -241,12 +237,3 @@ class ClientInfoWindow(QDialog):
                 credits_list.addItem("-" * 50)
         else:
             credits_list.addItem("Нет данных по кредитам")
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QApplication(sys.argv)
-#     # Не забудьте передать id клиента
-#     form = ClientInfoWindow(id_client=1)
-#     form.show()
-#     sys.exit(app.exec())

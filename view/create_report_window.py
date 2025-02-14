@@ -1,10 +1,7 @@
-# import sys
-# import os
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import (
-    QApplication, QWidget, QDialog, QPushButton, QComboBox,
-    QLineEdit, QDateEdit, QLabel, QFileDialog, QMessageBox
+    QDialog, QPushButton, QComboBox,
+    QLineEdit, QDateEdit, QLabel
 )
 from view.create_report_w_controller import *
 from PyQt6.QtCore import QDate
@@ -52,10 +49,3 @@ class CreateReportWindow(QDialog):
         self.date_label = QLabel(self)
         self.date_label.setGeometry(QtCore.QRect(130, 80, 260, 16))
         self.date_label.setText("Выберите период")
-
-
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)
-#     form = CreateReportWindow()
-#     form.show()
-#     sys.exit(app.exec())
