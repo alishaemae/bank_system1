@@ -48,6 +48,7 @@ class ClientInfoWindow(QDialog):
             item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
             self.list_widget.addItem(item)
 
+        self.list_widget.setWordWrap(True)
         value_indices = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
         for idx in value_indices:
             item = self.list_widget.item(idx)
@@ -121,7 +122,7 @@ class ClientInfoWindow(QDialog):
                     status_item = QListWidgetItem(f"Статус: {account.status_name}")
                     status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     accounts_list.addItem(status_item)
-                accounts_list.addItem("-" * 44)
+                accounts_list.addItem("-" * 50)
         else:
             accounts_list.addItem("Нет данных по счетам")
 
@@ -149,7 +150,7 @@ class ClientInfoWindow(QDialog):
                     status_item = QListWidgetItem(f"Статус: {card.status_name}")
                     status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     cards_list.addItem(status_item)
-                cards_list.addItem("-" * 44)
+                cards_list.addItem("-" * 50)
         else:
             cards_list.addItem("Нет данных по картам")
 
@@ -176,7 +177,7 @@ class ClientInfoWindow(QDialog):
                     status_item = QListWidgetItem(f"Статус: {deposit.status_name}")
                     status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     deposits_list.addItem(status_item)
-                deposits_list.addItem("-" * 44)
+                deposits_list.addItem("-" * 50)
         else:
             deposits_list.addItem("Нет данных по депозитам")
 
@@ -204,7 +205,7 @@ class ClientInfoWindow(QDialog):
                     status_item = QListWidgetItem(f"Статус: {credit.status_name}")
                     status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     credits_list.addItem(status_item)
-                credits_list.addItem("-" * 44)
+                credits_list.addItem("-" * 50)
         else:
             credits_list.addItem("Нет данных по кредитам")
 
