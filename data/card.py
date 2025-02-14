@@ -22,7 +22,7 @@ class Card:
         self.type = type
         self.number = str(number)
         self.expiration_date = expiration_date
-        self.credit_limit = float(credit_limit)
+        self.credit_limit = int(credit_limit)
         self.opened_date = opened_date
         self.closed_date = closed_date
         self.__status = CardStatus(status)

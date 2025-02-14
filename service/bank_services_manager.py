@@ -49,15 +49,16 @@ class BankServicesManager:
                     ),
                     account=Account(
                         number=row[2],
-                        client=None, type=None, id=0, currency=None, balance=None, opened_date=None, closed_date=None, status=None
+                        currency=row[3],
+                        client=None, type=None, id=0, balance=None, opened_date=None, closed_date=None, status=None
                     ),
-                    type=row[3],
-                    number=row[4],
-                    expiration_date=row[5],
-                    credit_limit=row[6],
-                    opened_date=row[7],
-                    closed_date=row[8],
-                    status=row[9]
+                    type=row[4],
+                    number=row[5],
+                    expiration_date=row[6],
+                    credit_limit=row[7],
+                    opened_date=row[8],
+                    closed_date=row[9],
+                    status=row[10]
                 ) for row in result]
                 return cards
             else:

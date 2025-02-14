@@ -138,7 +138,7 @@ class ClientInfoWindow(QDialog):
                 cards_list.addItem(f"Счет: {card.account.number}")
                 cards_list.addItem(f"Срок действия: {format_date(card.expiration_date)}")
                 if card.credit_limit != 0.00:
-                    cards_list.addItem(f"Кредитный лимит: {card.credit_limit}")
+                    cards_list.addItem(f"Кредитный лимит: {card.credit_limit} {card.account.currency}")
                 cards_list.addItem(f"Дата открытия: {format_date(card.opened_date)}")
                 if card.closed_date:
                     cards_list.addItem(f"Дата закрытия: {format_date(card.closed_date)}")
@@ -164,8 +164,11 @@ class ClientInfoWindow(QDialog):
                 deposits_list.addItem(f"Тип: {deposit.type}")
                 deposits_list.addItem(f"Сумма: {deposit.amount}")
                 deposits_list.addItem(f"Дата погашения: {format_date(deposit.due_date)}")
-                deposits_list.addItem(f"Процентная ставка: {deposit.interest_rate}")
-                deposits_list.addItem(f"Досрочное снятие: {deposit.early_withdrawal_allowed}")
+                deposits_list.addItem(f"Процентная ставка: {deposit.interest_rate}%")
+                if deposit.early_withdrawal_allowed == 1:
+                    deposits_list.addItem("Досрочное снятие: Да")
+                else:
+                    deposits_list.addItem("Досрочное снятие: Нет")
                 deposits_list.addItem(f"Дата открытия: {format_date(deposit.opened_at)}")
                 if deposit.closed_at:
                     deposits_list.addItem(f"Дата закрытия: {format_date(deposit.closed_at)}")
@@ -189,9 +192,9 @@ class ClientInfoWindow(QDialog):
         if credits:
             for credit in credits:
                 credits_list.addItem(f"Тип: {credit.type}")
-                credits_list.addItem(f"Сумма: {credit.amount}")
+                credits_list.addItem(f"Сумма: {credit.amount} RUB")
                 credits_list.addItem(f"Дата погашения: {format_date(credit.due_date)}")
-                credits_list.addItem(f"Процентная ставка: {credit.interest_rate}")
+                credits_list.addItem(f"Процентная ставка: {credit.interest_rate}%")
                 credits_list.addItem(f"Месячный платеж: {credit.monthly_payment}")
                 credits_list.addItem(f"Пеня: {credit.penalty_rate}")
                 credits_list.addItem(f"Дата открытия: {format_date(credit.opened_at)}")

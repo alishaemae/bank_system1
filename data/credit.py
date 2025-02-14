@@ -18,11 +18,11 @@ class Credit:
         self.id = int(id)
         self.client = client
         self.type = type
-        self.amount = str(amount)
+        self.amount = float(amount)
         self.due_date = due_date
-        self.interest_rate = str(interest_rate)
-        self.monthly_payment = str(monthly_payment)
-        self.penalty_rate = str(penalty_rate)
+        self.interest_rate = float(interest_rate)
+        self.monthly_payment = int(monthly_payment)
+        self.penalty_rate = float(penalty_rate)
         self.opened_at = opened_at
         self.closed_at = closed_at
         self.__status = CreditStatus(status)

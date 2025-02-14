@@ -132,7 +132,7 @@ class DatabaseManager:
         try:
             with self.__engine.connect() as conn:
                 query = text("""
-                    SELECT c_c.id, c_c.id_client, c_a.number, t_c.name, c_c.card_number, c_c.expiration_date, c_c.credit_limit, c_c.opened_at, c_c.closed_at, c_c.status
+                    SELECT c_c.id, c_c.id_client, c_a.number, c_a.currency, t_c.name, c_c.card_number, c_c.expiration_date, c_c.credit_limit, c_c.opened_at, c_c.closed_at, c_c.status
                     FROM client_cards c_c
                     join types_of_cards t_c on c_c.id_card_type = t_c.id
                     join client_accounts c_a on c_c.id_client_account = c_a.id

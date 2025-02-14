@@ -18,9 +18,9 @@ class Deposit:
         self.id = int(id)
         self.client = client
         self.type = type
-        self.amount = str(amount)
+        self.amount = float(amount)
         self.due_date = due_date
-        self.interest_rate = str(interest_rate)
+        self.interest_rate = float(interest_rate)
         self.early_withdrawal_allowed = early_withdrawal_allowed
         self.opened_at = opened_at
         self.closed_at = closed_at
