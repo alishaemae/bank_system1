@@ -15,18 +15,18 @@ class Card:
     def status_name(self):
         return self.__get_status_name()
     
-    def __init__(self, client, account, type, number, expiration_date, credit_limit, opened_date, closed_date, status):
+    def __init__(self, id, client, account, type, number, expiration_date, credit_limit, opened_date, closed_date, status):
+        self.id = int(id)
         self.client = client
         self.account = account
         self.type = type
-        self.number = int(number)
+        self.number = str(number)
         self.expiration_date = expiration_date
-        self.credit_limit = float(credit_limit)
+        self.credit_limit = str(credit_limit)
         self.opened_date = opened_date
         self.closed_date = closed_date
         self.__status = CardStatus(status)
         
-
     def __get_status_name(self):
         if self.__status == CardStatus.ACTIVE:
             return "Активна"

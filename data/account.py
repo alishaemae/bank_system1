@@ -16,15 +16,16 @@ class Account:
     def status_name(self):
         return self.__get_status_name()
 
-    def __init__(self, client, type, number, currency, balance, opened_date, closed_date, status):
+    def __init__(self, id, client, type, number, currency, balance, opened_date, closed_date, status):
+        self.id = int(id)
         self.client = client
         self.type = type
-        self.number = int(number)
+        self.number = str(number)
         self.currency = str(currency)
-        self.balance = float(balance)
+        self.balance = str(balance)
         self.opened_date = opened_date
         self.closed_date = closed_date
-        self.__status = AccountStatus(status)
+        self.__status = AccountStatus(status) if status is not None else AccountStatus.ACTIVE
 
     def __get_status_name(self):
         if self.__status == AccountStatus.ACTIVE:

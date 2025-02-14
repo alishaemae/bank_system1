@@ -21,7 +21,6 @@ class AuthWindow(QWidget):
         # Поле для логина
         self.usernameLineEdit = QLineEdit(self.verticalLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(9)
         self.usernameLineEdit.setFont(font)
         self.usernameLineEdit.setFixedHeight(28)
         self.usernameLineEdit.setPlaceholderText("Введите логин")
@@ -30,7 +29,6 @@ class AuthWindow(QWidget):
         # Поле для пароля
         self.passwordLineEdit = QLineEdit(self.verticalLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(9)
         self.passwordLineEdit.setFont(font)
         self.passwordLineEdit.setEchoMode(QLineEdit.EchoMode.Password)
         self.passwordLineEdit.setFixedHeight(28)
@@ -41,7 +39,6 @@ class AuthWindow(QWidget):
         self.captchaLineEdit = QLineEdit(self)
         self.captchaLineEdit.setGeometry(QtCore.QRect(60, 210, 281, 28))  
         font = QtGui.QFont()
-        font.setPointSize(9)
         self.captchaLineEdit.setFont(font)
         self.captchaLineEdit.setPlaceholderText("Введите капчу")
 
