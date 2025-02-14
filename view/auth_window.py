@@ -51,7 +51,7 @@ class AuthWindow(QWidget):
         self.refreshCaptchaButton.setGeometry(QtCore.QRect(250, 160, 40, 40))
         self.refreshCaptchaButton.setStyleSheet("border: none;")
         refresh_icon = QtGui.QIcon(os.path.join(
-            os.path.dirname(__file__), 'assets', 'refresh.svg'))
+            os.path.dirname(__file__), 'refresh.svg'))
         self.refreshCaptchaButton.setIcon(refresh_icon)
         self.refreshCaptchaButton.setIconSize(QtCore.QSize(32, 32))
         self.refreshCaptchaButton.clicked.connect(
