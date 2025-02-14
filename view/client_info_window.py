@@ -101,7 +101,7 @@ class ClientInfoWindow(QDialog):
 
         # --- Счета ---
         layout_accounts = QVBoxLayout(self.tab)
-        layout_accounts.setContentsMargins(0, 0, 0, 0)  # убираем отступы
+        layout_accounts.setContentsMargins(0, 0, 0, 0)
         accounts_list = QListWidget(self.tab)
         layout_accounts.addWidget(accounts_list)
         if accounts:
@@ -136,7 +136,7 @@ class ClientInfoWindow(QDialog):
                 cards_list.addItem(f"Номер карты: {str(card.number)[:4]}{'*'*8}{str(card.number)[-4:]}")
                 cards_list.addItem(f"Счет: {card.account.number}")
                 cards_list.addItem(f"Срок действия: {format_date(card.expiration_date)}")
-                if card.credit_limit:
+                if card.credit_limit != 0.00:
                     cards_list.addItem(f"Кредитный лимит: {card.credit_limit}")
                 cards_list.addItem(f"Дата открытия: {format_date(card.opened_date)}")
                 if card.closed_date:
