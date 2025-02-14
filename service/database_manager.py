@@ -132,7 +132,7 @@ class DatabaseManager:
         try:
             with self.__engine.connect() as conn:
                 query = text("""
-                    SELECT c_a.id, c_a.id_client, t_a.name, c_a.number, c_a.currency, c_a.balance, c_a.opened_at, c_a.closed_at, c_a.status
+                    SELECT c_a.id, c_a.id_client, t_a.name, c_a.number, c_a.currency, c_a.balance, c_a.opened_date, c_a.closed_date, c_a.status
                     FROM client_accounts c_a
                     join types_of_accounts t_a on c_a.id_account_type = t_a.id
                     WHERE c_a.id_client = :id_client
@@ -147,7 +147,7 @@ class DatabaseManager:
         try:
             with self.__engine.connect() as conn:
                 query = text("""
-                    SELECT c_c.id, c_c.id_client, c_a.number, c_a.currency, t_c.name, c_c.card_number, c_c.expiration_date, c_c.credit_limit, c_c.opened_at, c_c.closed_at, c_c.status
+                    SELECT c_c.id, c_c.id_client, c_a.number, c_a.currency, t_c.name, c_c.card_number, c_c.expiration_date, c_c.credit_limit, c_c.opened_date, c_c.closed_date, c_c.status
                     FROM client_cards c_c
                     join types_of_cards t_c on c_c.id_card_type = t_c.id
                     join client_accounts c_a on c_c.id_client_account = c_a.id
@@ -163,7 +163,7 @@ class DatabaseManager:
         try:
             with self.__engine.connect() as conn:
                 query = text("""
-                    SELECT c_d.id, c_d.id_client, t_d.name, c_d.amount, c_d.due_date, c_d.interest_rate, c_d.early_withdrawal_allowed, c_d.opened_at, c_d.closed_at, c_d.status
+                    SELECT c_d.id, c_d.id_client, t_d.name, c_d.amount, c_d.due_date, c_d.interest_rate, c_d.early_withdrawal_allowed, c_d.opened_date, c_d.closed_date, c_d.status
                     FROM client_deposits c_d
                     join types_of_deposits t_d on c_d.id_deposit_type = t_d.id
                     WHERE c_d.id_client = :id_client
@@ -178,7 +178,7 @@ class DatabaseManager:
         try:
             with self.__engine.connect() as conn:
                 query = text("""
-                    SELECT c_c.id, c_c.id_client, t_c.name, c_c.amount, c_c.due_date, c_c.interest_rate, c_c.monthly_payment, c_c.penalty_rate, c_c.opened_at, c_c.closed_at, c_c.status
+                    SELECT c_c.id, c_c.id_client, t_c.name, c_c.amount, c_c.due_date, c_c.interest_rate, c_c.monthly_payment, c_c.penalty_rate, c_c.opened_date, c_c.closed_date, c_c.status
                     FROM client_credits c_c
                     join types_of_credits t_c on c_c.id_credit_type = t_c.id
                     WHERE c_c.id_client = :id_client

@@ -16,7 +16,7 @@ class Deposit:
     def status_name(self):
         return self.__get_status_name()
 
-    def __init__(self, id, client, type, amount, due_date, interest_rate, early_withdrawal_allowed, opened_at, closed_at, status):
+    def __init__(self, id, client, type, amount, due_date, interest_rate, early_withdrawal_allowed, opened_date, closed_date, status):
         self.id = int(id)
         self.client = client
         self.type = type
@@ -24,8 +24,8 @@ class Deposit:
         self.due_date = due_date
         self.interest_rate = float(interest_rate)
         self.early_withdrawal_allowed = early_withdrawal_allowed
-        self.opened_at = opened_at
-        self.closed_at = closed_at
+        self.opened_date = opened_date
+        self.closed_date = closed_date
         self.__status = DepositStatus(status)
 
     def __get_status_name(self):

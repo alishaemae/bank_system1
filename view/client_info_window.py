@@ -186,10 +186,10 @@ class ClientInfoWindow(QDialog):
                 else:
                     deposits_list.addItem("Досрочное снятие: Нет")
                 deposits_list.addItem(
-                    f"Дата открытия: {format_date(deposit.opened_at)}")
-                if deposit.closed_at:
+                    f"Дата открытия: {format_date(deposit.opened_date)}")
+                if deposit.closed_date:
                     deposits_list.addItem(
-                        f"Дата закрытия: {format_date(deposit.closed_at)}")
+                        f"Дата закрытия: {format_date(deposit.closed_date)}")
                 if deposit.status_name == "Активен":
                     status_item = QListWidgetItem(
                         f"Статус: {deposit.status_name}")
@@ -222,10 +222,10 @@ class ClientInfoWindow(QDialog):
                     f"Месячный платеж: {credit.monthly_payment}")
                 credits_list.addItem(f"Пеня: {credit.penalty_rate}")
                 credits_list.addItem(
-                    f"Дата открытия: {format_date(credit.opened_at)}")
-                if credit.closed_at:
+                    f"Дата открытия: {format_date(credit.opened_date)}")
+                if credit.closed_date:
                     credits_list.addItem(
-                        f"Дата закрытия: {format_date(credit.closed_at)}")
+                        f"Дата закрытия: {format_date(credit.closed_date)}")
                 if credit.status_name == "Активен":
                     status_item = QListWidgetItem(
                         f"Статус: {credit.status_name}")

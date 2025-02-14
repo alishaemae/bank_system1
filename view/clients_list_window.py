@@ -22,7 +22,6 @@ class ClientsListWindow(QWidget):
         self.setWindowTitle("Главное окно")
         self.setFixedSize(801, 478)
 
-        # Если пользователь - руководитель, то добавляем кнопку "Управление сотрудниками"
         if self.user.role == UserRole.BOSS:
             self.employees_button = QPushButton(
                 "Управление сотрудниками", self)
@@ -41,14 +40,13 @@ class ClientsListWindow(QWidget):
         self.user_info_button.clicked.connect(
             lambda: open_user_info_window(self))
 
-        # Кнопка "Создать отчет"
         self.report_button = QPushButton("Создать отчет", self)
         self.report_button.setFixedSize(110, 25)
         self.report_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;")
         self.report_button.setGeometry(QtCore.QRect(20, 433, 60, 25))
+        self.report_button.clicked.connect(lambda: open_create_report_window(self, self.clients))
 
-        # Кнопка "Выйти"
         self.exit_button = QPushButton("Выйти", self)
         self.exit_button.setFixedSize(60, 25)
         self.exit_button.setStyleSheet(
@@ -56,7 +54,6 @@ class ClientsListWindow(QWidget):
         self.exit_button.move(720, 433)
         self.exit_button.clicked.connect(lambda: open_auth_window(self))
 
-        # Таблица клиентов
         self.clients_table = QTableWidget(self)
         self.clients_table.setGeometry(QtCore.QRect(20, 70, 761, 343))
         self.clients_table.setColumnCount(4)

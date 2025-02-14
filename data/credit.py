@@ -16,7 +16,7 @@ class Credit:
     def status_name(self):
         return self.__get_status_name()
 
-    def __init__(self, id, client, type, amount, due_date, interest_rate, monthly_payment, penalty_rate, opened_at, closed_at, status):
+    def __init__(self, id, client, type, amount, due_date, interest_rate, monthly_payment, penalty_rate, opened_date, closed_date, status):
         self.id = int(id)
         self.client = client
         self.type = type
@@ -25,8 +25,8 @@ class Credit:
         self.interest_rate = float(interest_rate)
         self.monthly_payment = int(monthly_payment)
         self.penalty_rate = float(penalty_rate)
-        self.opened_at = opened_at
-        self.closed_at = closed_at
+        self.opened_date = opened_date
+        self.closed_date = closed_date
         self.__status = CreditStatus(status)
 
     def __get_status_name(self):

@@ -24,6 +24,11 @@ def open_employees_list_window(self):
     self.employees_list_window.show()
     self.close()
 
+def open_create_report_window(self, clients):
+    from view.create_report_window import CreateReportWindow
+    self.create_report_window = CreateReportWindow(clients)
+    self.create_report_window.exec()
+
 
 def search_clients(self):
     search_text = self.lineEdit.text().strip().lower().replace("ё", "е")

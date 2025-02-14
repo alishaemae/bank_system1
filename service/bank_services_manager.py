@@ -86,8 +86,8 @@ class BankServicesManager:
                     due_date=row[4],
                     interest_rate=row[5],
                     early_withdrawal_allowed=row[6],
-                    opened_at=row[7],
-                    closed_at=row[8],
+                    opened_date=row[7],
+                    closed_date=row[8],
                     status=row[9]
                 ) for row in result]
                 return deposits
@@ -116,8 +116,8 @@ class BankServicesManager:
                     interest_rate=row[5],
                     monthly_payment=row[6],
                     penalty_rate=row[7],
-                    opened_at=row[8],
-                    closed_at=row[9],
+                    opened_date=row[8],
+                    closed_date=row[9],
                     status=row[10]
                 ) for row in result]
                 return credits
