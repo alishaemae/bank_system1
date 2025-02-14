@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import (
     QApplication, QPushButton, QVBoxLayout, QHBoxLayout,
     QWidget, QLabel, QLineEdit, QComboBox
 )
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtCore import QRect
 from view.add_employee_w_controller import *
 from data.user import UserRole
 
@@ -16,35 +16,30 @@ class AddEmployeeWindow(QWidget):
         self.setWindowTitle("Добавление сотрудника")
         self.setFixedSize(801, 478)
 
-        # Кнопка "Добавить сотрудника" – позиционируется как в employees_list_window
         self.add_employee_button = QPushButton("Добавить сотрудника", self)
         self.add_employee_button.setFixedSize(160, 25)
         self.add_employee_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
         self.add_employee_button.setGeometry(QRect(620, 10, 160, 25))
         self.add_employee_button.clicked.connect(lambda: add_staff(self))
-        
-        # Кнопка "Назад" – позиционируется как в employees_list_window
+
         self.back_button = QPushButton("Назад", self)
         self.back_button.setFixedSize(60, 25)
         self.back_button.setStyleSheet(
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 5px;")
         self.back_button.setGeometry(QRect(720, 433, 60, 25))
-        self.back_button.clicked.connect(lambda: open_employees_list_window(self))
+        self.back_button.clicked.connect(
+            lambda: open_employees_list_window(self))
 
-        # Остальные элементы формы располагаются с помощью layout
         main_layout = QVBoxLayout(self)
-        # Отступ сверху и снизу, чтобы не перекрывать кнопки
         main_layout.setContentsMargins(20, 30, 20, 60)
         main_layout.setSpacing(5)
 
         self.error_label = QLabel("", self)
         self.error_label.setFixedHeight(22)
         self.error_label.setStyleSheet("color: red; font-size: 14px;")
-        # self.error_label.setText("Заполните все поля")
         self.error_label.setGeometry(QRect(20, 10, 350, 25))
 
-        # Левая колонка (форма 1)
         form_layout_left = QVBoxLayout()
         self.login_label = QLabel("Логин")
         self.login_input = QLineEdit()
@@ -62,7 +57,8 @@ class AddEmployeeWindow(QWidget):
             'MANAGER': 'Менеджер',
             'BOSS': 'Начальник'
         }
-        self.role_input.addItems([translations.get(role.name, role.name) for role in UserRole])
+        self.role_input.addItems(
+            [translations.get(role.name, role.name) for role in UserRole])
 
         self.last_name_label = QLabel("Фамилия")
         self.last_name_input = QLineEdit()
@@ -89,7 +85,6 @@ class AddEmployeeWindow(QWidget):
         form_layout_left.addWidget(self.middle_name_label)
         form_layout_left.addWidget(self.middle_name_input)
 
-        # Правая колонка (форма 2)
         form_layout_right = QVBoxLayout()
         self.job_label = QLabel("Должность")
         self.job_input = QLineEdit()
@@ -110,7 +105,7 @@ class AddEmployeeWindow(QWidget):
         self.salary_label = QLabel("Зарплата")
         self.salary_input = QLineEdit()
         self.salary_input.setFixedHeight(25)
-        
+
         self.email_label = QLabel("E-mail")
         self.email_input = QLineEdit()
         self.email_input.setFixedHeight(25)
@@ -128,7 +123,6 @@ class AddEmployeeWindow(QWidget):
         form_layout_right.addWidget(self.email_label)
         form_layout_right.addWidget(self.email_input)
 
-        # Расположение форм в два столбца
         forms_layout = QHBoxLayout()
         forms_layout.addLayout(form_layout_left)
         forms_layout.addSpacing(60)

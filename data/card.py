@@ -1,20 +1,22 @@
 from enum import Enum
 
+
 class CardStatus(Enum):
     ACTIVE = 'active'
     BLOCKED = 'blocked'
     EXPIRED = 'expired'
     CLOSED = 'closed'
 
+
 class Card:
     @property
     def status(self):
         return self.__status
-    
+
     @property
     def status_name(self):
         return self.__get_status_name()
-    
+
     def __init__(self, id, client, account, type, number, expiration_date, credit_limit, opened_date, closed_date, status):
         self.id = int(id)
         self.client = client
@@ -26,7 +28,7 @@ class Card:
         self.opened_date = opened_date
         self.closed_date = closed_date
         self.__status = CardStatus(status)
-        
+
     def __get_status_name(self):
         if self.__status == CardStatus.ACTIVE:
             return "Активна"

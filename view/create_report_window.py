@@ -4,6 +4,7 @@ from service.client_manager import ClientManager
 from service.user_manager import UserManager
 from view.create_report_w_controller import *
 
+
 class CreateReportWindow(QDialog):
     def __init__(self):
         super().__init__()
@@ -13,7 +14,6 @@ class CreateReportWindow(QDialog):
         self.setWindowTitle("Создать отчет")
         self.setFixedSize(568, 319)
 
-        
 
 if __name__ == "__main__":
     import sys

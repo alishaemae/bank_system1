@@ -32,7 +32,8 @@ class BankServicesManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None
 
     def get_cards_for_client(self, id_client):
@@ -64,9 +65,10 @@ class BankServicesManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None
-    
+
     def get_deposits_for_client(self, id_client):
         database_manager = DatabaseManager()
         query = database_manager.get_deposits_for_client_db(id_client)
@@ -92,9 +94,10 @@ class BankServicesManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None
-    
+
     def get_credits_for_client(self, id_client):
         database_manager = DatabaseManager()
         query = database_manager.get_credits_for_client_db(id_client)
@@ -121,5 +124,6 @@ class BankServicesManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None

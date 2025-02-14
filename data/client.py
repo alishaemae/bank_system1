@@ -2,11 +2,11 @@ class Client:
     @property
     def full_name(self):
         return f"{self.last_name} {self.first_name} {self.middle_name}"
-    
+
     @property
     def full_passport_info(self):
         return f"{self.passport_number} {self.passport_issue_date}"
-     
+
     def __init__(self, id, employee, last_name, first_name, middle_name, birth_date, phone_number, registration_address, residential_address, email, passport_number, passport_issue_date, inn):
         self.id = int(id)
         self.employee = employee

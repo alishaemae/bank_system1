@@ -3,6 +3,7 @@ from service.database_manager import DatabaseManager
 from data.client import Client
 from data.user import User
 
+
 class ClientManager:
     def get_clients(self, id_employee, role):
         database_manager = DatabaseManager()
@@ -37,7 +38,8 @@ class ClientManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None
 
     def get_client_info(self, id_client):
@@ -73,5 +75,6 @@ class ClientManager:
             else:
                 return None
         else:
-            QMessageBox.critical(None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
+            QMessageBox.critical(
+                None, "Ошибка", f"Ошибка подключения к базе данных: {query.error}")
             return None

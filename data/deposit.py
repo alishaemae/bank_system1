@@ -1,15 +1,17 @@
 from enum import Enum
 
+
 class DepositStatus(Enum):
     ACTIVE = 'active'
     CLOSED = 'closed'
     FROZEN = 'frozen'
 
+
 class Deposit:
     @property
     def status(self):
         return self.__status
-    
+
     @property
     def status_name(self):
         return self.__get_status_name()

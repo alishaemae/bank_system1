@@ -4,7 +4,7 @@
 
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import (
-    QDialog, QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QApplication, QVBoxLayout, QTableWidget, QTableWidgetItem
+    QDialog, QWidget, QScrollBar, QListWidget, QListWidgetItem, QTabWidget, QVBoxLayout
 )
 from service.client_manager import ClientManager
 from service.user_manager import UserManager
@@ -32,7 +32,8 @@ class ClientInfoWindow(QDialog):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.list_widget.setFont(font)
-        self.list_widget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.list_widget.setVerticalScrollBarPolicy(
+            QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         internal_scroll = self.list_widget.verticalScrollBar()
         internal_scroll.rangeChanged.connect(self.custom_scroll.setRange)
@@ -74,10 +75,11 @@ class ClientInfoWindow(QDialog):
         self.list_widget.item(14).setText("Серия и номер паспорта:")
         self.list_widget.item(15).setText(str(self.client.passport_number))
         self.list_widget.item(16).setText("Дата выдачи паспорта:")
-        self.list_widget.item(17).setText(format_date(self.client.passport_issue_date))
+        self.list_widget.item(17).setText(
+            format_date(self.client.passport_issue_date))
         self.list_widget.item(18).setText("ИНН:")
         self.list_widget.item(19).setText(str(self.client.inn))
-        
+
         self.tab_widget = QTabWidget(self)
         self.tab_widget.setGeometry(QtCore.QRect(301, 0, 268, 318))
 
@@ -100,7 +102,6 @@ class ClientInfoWindow(QDialog):
         deposits = services_manager.get_deposits_for_client(self.client.id)
         credits = services_manager.get_credits_for_client(self.client.id)
 
-        # --- Счета ---
         layout_accounts = QVBoxLayout(self.tab)
         layout_accounts.setContentsMargins(0, 0, 0, 0)
         accounts_list = QListWidget(self.tab)
@@ -111,22 +112,27 @@ class ClientInfoWindow(QDialog):
                 accounts_list.addItem(f"Номер: {account.number}")
                 accounts_list.addItem(f"Валюта: {account.currency}")
                 accounts_list.addItem(f"Баланс: {account.balance}")
-                accounts_list.addItem(f"Дата открытия: {format_date(account.opened_date)}")
+                accounts_list.addItem(
+                    f"Дата открытия: {format_date(account.opened_date)}")
                 if account.closed_date:
-                    accounts_list.addItem(f"Дата закрытия: {format_date(account.closed_date)}")
+                    accounts_list.addItem(
+                        f"Дата закрытия: {format_date(account.closed_date)}")
                 if account.status_name == "Активен":
-                    status_item = QListWidgetItem(f"Статус: {account.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {account.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(30, 138, 86)))
                     accounts_list.addItem(status_item)
                 else:
-                    status_item = QListWidgetItem(f"Статус: {account.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {account.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     accounts_list.addItem(status_item)
                 accounts_list.addItem("-" * 50)
         else:
             accounts_list.addItem("Нет данных по счетам")
 
-        # --- Карты ---
         layout_cards = QVBoxLayout(self.tab_2)
         layout_cards.setContentsMargins(0, 0, 0, 0)
         cards_list = QListWidget(self.tab_2)
@@ -134,27 +140,35 @@ class ClientInfoWindow(QDialog):
         if cards:
             for card in cards:
                 cards_list.addItem(f"Тип: {card.type}")
-                cards_list.addItem(f"Номер карты: {str(card.number)[:4]}{'*'*8}{str(card.number)[-4:]}")
+                cards_list.addItem(
+                    f"Номер карты: {str(card.number)[:4]}{'*'*8}{str(card.number)[-4:]}")
                 cards_list.addItem(f"Счет: {card.account.number}")
-                cards_list.addItem(f"Срок действия: {format_date(card.expiration_date)}")
+                cards_list.addItem(
+                    f"Срок действия: {format_date(card.expiration_date)}")
                 if card.credit_limit != 0.00:
-                    cards_list.addItem(f"Кредитный лимит: {card.credit_limit} {card.account.currency}")
-                cards_list.addItem(f"Дата открытия: {format_date(card.opened_date)}")
+                    cards_list.addItem(
+                        f"Кредитный лимит: {card.credit_limit} {card.account.currency}")
+                cards_list.addItem(
+                    f"Дата открытия: {format_date(card.opened_date)}")
                 if card.closed_date:
-                    cards_list.addItem(f"Дата закрытия: {format_date(card.closed_date)}")
+                    cards_list.addItem(
+                        f"Дата закрытия: {format_date(card.closed_date)}")
                 if card.status_name == "Активна":
-                    status_item = QListWidgetItem(f"Статус: {card.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {card.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(30, 138, 86)))
                     cards_list.addItem(status_item)
                 else:
-                    status_item = QListWidgetItem(f"Статус: {card.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {card.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     cards_list.addItem(status_item)
                 cards_list.addItem("-" * 50)
         else:
             cards_list.addItem("Нет данных по картам")
 
-        # --- Депозиты ---
         layout_deposits = QVBoxLayout(self.tab_3)
         layout_deposits.setContentsMargins(0, 0, 0, 0)
         deposits_list = QListWidget(self.tab_3)
@@ -163,28 +177,35 @@ class ClientInfoWindow(QDialog):
             for deposit in deposits:
                 deposits_list.addItem(f"Тип: {deposit.type}")
                 deposits_list.addItem(f"Сумма: {deposit.amount}")
-                deposits_list.addItem(f"Дата погашения: {format_date(deposit.due_date)}")
-                deposits_list.addItem(f"Процентная ставка: {deposit.interest_rate}%")
+                deposits_list.addItem(
+                    f"Дата погашения: {format_date(deposit.due_date)}")
+                deposits_list.addItem(
+                    f"Процентная ставка: {deposit.interest_rate}%")
                 if deposit.early_withdrawal_allowed == 1:
                     deposits_list.addItem("Досрочное снятие: Да")
                 else:
                     deposits_list.addItem("Досрочное снятие: Нет")
-                deposits_list.addItem(f"Дата открытия: {format_date(deposit.opened_at)}")
+                deposits_list.addItem(
+                    f"Дата открытия: {format_date(deposit.opened_at)}")
                 if deposit.closed_at:
-                    deposits_list.addItem(f"Дата закрытия: {format_date(deposit.closed_at)}")
+                    deposits_list.addItem(
+                        f"Дата закрытия: {format_date(deposit.closed_at)}")
                 if deposit.status_name == "Активен":
-                    status_item = QListWidgetItem(f"Статус: {deposit.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {deposit.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(30, 138, 86)))
                     deposits_list.addItem(status_item)
                 else:
-                    status_item = QListWidgetItem(f"Статус: {deposit.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {deposit.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     deposits_list.addItem(status_item)
                 deposits_list.addItem("-" * 50)
         else:
             deposits_list.addItem("Нет данных по депозитам")
 
-        # --- Кредиты ---
         layout_credits = QVBoxLayout(self.tab_4)
         layout_credits.setContentsMargins(0, 0, 0, 0)
         credits_list = QListWidget(self.tab_4)
@@ -193,20 +214,29 @@ class ClientInfoWindow(QDialog):
             for credit in credits:
                 credits_list.addItem(f"Тип: {credit.type}")
                 credits_list.addItem(f"Сумма: {credit.amount} RUB")
-                credits_list.addItem(f"Дата погашения: {format_date(credit.due_date)}")
-                credits_list.addItem(f"Процентная ставка: {credit.interest_rate}%")
-                credits_list.addItem(f"Месячный платеж: {credit.monthly_payment}")
+                credits_list.addItem(
+                    f"Дата погашения: {format_date(credit.due_date)}")
+                credits_list.addItem(
+                    f"Процентная ставка: {credit.interest_rate}%")
+                credits_list.addItem(
+                    f"Месячный платеж: {credit.monthly_payment}")
                 credits_list.addItem(f"Пеня: {credit.penalty_rate}")
-                credits_list.addItem(f"Дата открытия: {format_date(credit.opened_at)}")
+                credits_list.addItem(
+                    f"Дата открытия: {format_date(credit.opened_at)}")
                 if credit.closed_at:
-                    credits_list.addItem(f"Дата закрытия: {format_date(credit.closed_at)}")
+                    credits_list.addItem(
+                        f"Дата закрытия: {format_date(credit.closed_at)}")
                 if credit.status_name == "Активен":
-                    status_item = QListWidgetItem(f"Статус: {credit.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(30, 138, 86)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {credit.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(30, 138, 86)))
                     credits_list.addItem(status_item)
                 else:
-                    status_item = QListWidgetItem(f"Статус: {credit.status_name}")
-                    status_item.setForeground(QtGui.QBrush(QtGui.QColor(255, 0, 0)))
+                    status_item = QListWidgetItem(
+                        f"Статус: {credit.status_name}")
+                    status_item.setForeground(
+                        QtGui.QBrush(QtGui.QColor(255, 0, 0)))
                     credits_list.addItem(status_item)
                 credits_list.addItem("-" * 50)
         else:

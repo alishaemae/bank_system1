@@ -1,17 +1,19 @@
 from enum import Enum
 
+
 class AccountStatus(Enum):
     ACTIVE = 'active'
     CLOSED = 'closed'
     FROZEN = 'frozen'
 
+
 class Account:
     __status = None
-    
+
     @property
     def status(self):
         return self.__status
-    
+
     @property
     def status_name(self):
         return self.__get_status_name()
@@ -25,7 +27,8 @@ class Account:
         self.balance = str(balance)
         self.opened_date = opened_date
         self.closed_date = closed_date
-        self.__status = AccountStatus(status) if status is not None else AccountStatus.ACTIVE
+        self.__status = AccountStatus(
+            status) if status is not None else AccountStatus.ACTIVE
 
     def __get_status_name(self):
         if self.__status == AccountStatus.ACTIVE:
@@ -36,5 +39,3 @@ class Account:
             return "Заморожен"
         else:
             return "Неизвестный статус"
-
-

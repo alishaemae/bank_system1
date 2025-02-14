@@ -2,7 +2,8 @@ def open_auth_window(self):
     from view.auth_window import AuthWindow
     self.auth_window = AuthWindow()
     self.auth_window.show()
-    self.close()  
+    self.close()
+
 
 def open_user_info_window(self):
     from view.user_info_window import UserInfoWindow
@@ -10,10 +11,12 @@ def open_user_info_window(self):
     self.user_info_window.show()
     self.close()
 
+
 def open_client_info_window(self, id_client):
     from view.client_info_window import ClientInfoWindow
     self.client_info_window = ClientInfoWindow(id_client)
     self.client_info_window.exec()
+
 
 def open_employees_list_window(self):
     from view.employees_list_window import EmployeesListWindow
@@ -21,13 +24,14 @@ def open_employees_list_window(self):
     self.employees_list_window.show()
     self.close()
 
+
 def search_clients(self):
     search_text = self.lineEdit.text().strip().lower().replace("ё", "е")
     if search_text == "":
         filtered = self.all_clients
     else:
         filtered = [
-            client for client in self.all_clients 
+            client for client in self.all_clients
             if search_text in client.full_name.lower().replace("ё", "е")
         ]
     self.clients = filtered

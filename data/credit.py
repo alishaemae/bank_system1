@@ -1,15 +1,17 @@
 from enum import Enum
 
+
 class CreditStatus(Enum):
     ACTIVE = 'active'
     CLOSED = 'closed'
     OVERDUE = 'overdue'
 
+
 class Credit:
     @property
     def status(self):
         return self.__status
-    
+
     @property
     def status_name(self):
         return self.__get_status_name()

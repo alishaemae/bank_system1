@@ -1,6 +1,7 @@
 from enum import IntEnum
 
-class UserRole(IntEnum): 
+
+class UserRole(IntEnum):
     MANAGER = 1
     BOSS = 2
 
@@ -11,15 +12,15 @@ class User:
     @property
     def full_name(self):
         return f"{self.last_name} {self.first_name} {self.middle_name}"
-    
+
     @property
     def role_name(self):
         return self.__get_role_name()
-    
+
     @property
     def role(self):
         return self.__role
-    
+
     def __init__(self, id, role, job, last_name, first_name, middle_name, birth_date, address, phone_number, email, salary, login, password):
         self.id = int(id)
         self.__role = int(role)
@@ -35,8 +36,7 @@ class User:
         self.login = str(login)
         self.password = str(password)
 
-
-    def __get_role_name(self): 
+    def __get_role_name(self):
         if self.role == UserRole.MANAGER:
             return "Менеджер"
         elif self.role == UserRole.BOSS:

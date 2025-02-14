@@ -5,20 +5,18 @@ from data.user import UserRole
 
 
 class EmployeeInfoWindow(QWidget):
-    def __init__(self, employee):   
+    def __init__(self, employee):
         super().__init__()
-        self.employee = employee   
+        self.employee = employee
         self.ui_employee_info_window()
 
     def ui_employee_info_window(self):
         self.setWindowTitle("Информация о сотруднике")
         self.setFixedSize(801, 478)
 
-        # Вместо создания центрального виджета устанавливаем layout на self
         main_layout = QVBoxLayout(self)
         main_layout.setContentsMargins(90, 10, 90, 30)
 
-        # Заголовок с именем пользователя
         self.name_label = QLabel(self.employee.full_name, self)
         font = QtGui.QFont()
         font.setPointSize(13)
@@ -27,17 +25,15 @@ class EmployeeInfoWindow(QWidget):
         self.name_label.setFixedHeight(45)
         main_layout.addWidget(self.name_label)
 
-        # Layout для отображения информации с разделителем между блоками
         details_layout = QGridLayout()
         details_layout.setHorizontalSpacing(15)
         details_layout.setColumnStretch(1, 1)
         details_layout.setColumnStretch(4, 2)
-        # Увеличиваем минимальную ширину столбцов, чтобы правый столбец не сдвигался влево
         details_layout.setColumnMinimumWidth(1, 150)
         details_layout.setColumnMinimumWidth(4, 150)
 
         value_style = "font-size: 14px; color: rgb(30, 138, 86); font-weight: bold; border: 1px; padding: 2px;"
- 
+
         font = QtGui.QFont()
         font.setPointSize(10)
 
@@ -74,7 +70,8 @@ class EmployeeInfoWindow(QWidget):
         self.salary_value.setStyleSheet(value_style)
         details_layout.addWidget(self.salary_value, 3, 1)
 
-        spacer = QSpacerItem(20, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        spacer = QSpacerItem(20, 20, QSizePolicy.Policy.Fixed,
+                             QSizePolicy.Policy.Minimum)
         details_layout.addItem(spacer, 0, 2, 4, 4)
 
         login_label = QLabel("Логин:")
@@ -110,7 +107,8 @@ class EmployeeInfoWindow(QWidget):
             "background-color: rgb(30, 138, 86); font-size: 14px; color: white; border: 0; border-radius: 4px;"
         )
         self.back_button.move(720, 433)
-        self.back_button.clicked.connect(lambda: open_emloyees_list_window(self))
+        self.back_button.clicked.connect(
+            lambda: open_employees_list_window(self))
 
         if self.employee.role == UserRole.MANAGER:
             self.delete_button = QPushButton("Удалить сотрудника", self)
@@ -121,27 +119,3 @@ class EmployeeInfoWindow(QWidget):
             self.delete_button.setGeometry(QtCore.QRect(620, 10, 160, 25))
             self.delete_button.clicked.connect(lambda: delete_employee(self))
 
-
-# if __name__ == "__main__":
-#     import sys
-#     import datetime
-#     from PyQt6.QtWidgets import QApplication
-
-#     app = QApplication(sys.argv)
-
-#     class DummyUser:
-#         def __init__(self):
-#             self.full_name = "Иван Иванов Иванович"
-#             self.birth_date = datetime.datetime(1990, 12, 31)
-#             self.login = "ivanov"
-#             self.phone_number = "+7 (111) 222-3333"
-#             self.address = "г. Москва, ул. Ленина, д. 1"
-#             self.job = "Бухгалтер"
-#             self.salary = 50000
-#             self.email = "nasushchnov487@gmail.com"
-
-#     dummy_user = DummyUser()
-#     window = EmployeeInfoWindow(dummy_user)
-#     window.show()
-
-#     sys.exit(app.exec())
